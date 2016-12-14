@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kafka/kafka.iml" filepath="$PROJECT_DIR$/.idea/modules/kafka/kafka.iml" group="kafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kafka/kafka_main.iml" filepath="$PROJECT_DIR$/.idea/modules/kafka/kafka_main.iml" group="kafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kafka/kafka_test.iml" filepath="$PROJECT_DIR$/.idea/modules/kafka/kafka_test.iml" group="kafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/message.iml" filepath="$PROJECT_DIR$/.idea/modules/message.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/message_main.iml" filepath="$PROJECT_DIR$/.idea/modules/message_main.iml" group="message" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/message_test.iml" filepath="$PROJECT_DIR$/.idea/modules/message_test.iml" group="message" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rabbitmq/rabbitmq.iml" filepath="$PROJECT_DIR$/.idea/modules/rabbitmq/rabbitmq.iml" group="rabbitmq" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rabbitmq/rabbitmq_main.iml" filepath="$PROJECT_DIR$/.idea/modules/rabbitmq/rabbitmq_main.iml" group="rabbitmq" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rabbitmq/rabbitmq_test.iml" filepath="$PROJECT_DIR$/.idea/modules/rabbitmq/rabbitmq_test.iml" group="rabbitmq" />
+    </modules>
+  </component>
+</project>
