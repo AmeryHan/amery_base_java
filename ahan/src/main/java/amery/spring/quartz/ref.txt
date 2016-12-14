@@ -1,0 +1,9 @@
+http://quartz-scheduler.org/downloads/catalog
+
+Release Date: 27/Apr/12 Quartz 2.1.5 
+
+INSERT INTO QRTZ_LOCKS values('your sched_name', 'TRIGGER_ACCESS'); 
+INSERT INTO QRTZ_LOCKS values('your sched_name','JOB_ACCESS'); 
+INSERT INTO QRTZ_LOCKS values('your sched_name','CALENDAR_ACCESS'); 
+INSERT INTO QRTZ_LOCKS values('your sched_name','STATE_ACCESS'); 
+INSERT INTO QRTZ_LOCKS values('your sched_name','MISFIRE_ACCESS'); 

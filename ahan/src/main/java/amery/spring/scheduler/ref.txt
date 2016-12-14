@@ -1,0 +1,112 @@
+
+Spring在schedule这块支持JDK Timer、concurrent、quartz三种，这三种任务调度方案在实现机制和调用方法上都不同，但spring通过对其包装，使得基于spring能用统一的配置和编码风格来使用这三种schedule方案。
+
+总得来说这三种schedule都是基于scheduler->trigger->job的基本流程，因此spring通过TimerFactoryBean、ScheduledExecutorFactoryBean和SchedulerFactoryBean分别实现JDK Timer、concurrent和quartz的基本流程
+顺着scheduler->trigger->job的思路，Spring又分别对JDK Timer、concurrent、quartz的trigger进行了封装，暴露出时间调度的配置参数，三种封装类分别为ScheduledTimerTask、ScheduledExecutorTask和CronTriggerBean+SimpleTriggerBean。三种trigger封装类分别根据实现机制的特点暴露出时间调度配置并串联起scheduler和具体job任务
+
+Timer与ScheduledThreadPoolExecutor的比较：
+
+1.Timer对调度的支持是基于绝对时间的，因此任务对系统时间的改变是敏感的；而ScheduledThreadPoolExecutor支持相对时间。
+2.Timer使用单线程方式来执行所有的TimerTask，如果某个TimerTask很耗时则会影响到其他TimerTask的执行；而ScheduledThreadPoolExecutor则可以构造一个固定大小的线程池来执行任务。
+3.Timer 不会捕获由TimerTask抛出的未检查异常，故当有异常抛出时，Timer会终止，导致未执行完的TimerTask不再执行，新的 TimerTask也不能被调度；ScheduledThreadPoolExecutor对这个问题进行了妥善的处理，不会影响其他任务的执行。
+关于ScheduledExecutorService与ExecutorService区别：
+1.Executors类通过工厂方法返回ExecutorService接口的实现类如下：
+newFixedThreadPool
+newSingleThreadExecutor
+newCachedThreadPool(常用)
+2.返回ScheduledExecutorService接口的实现类：
+newScheduledThreadPool，它返回的值ScheduledExecutorService extends ExecutorService。
+3.二者的区别是ExecutorService是线程池的抽象。ScheduledExecutorService可以理解为线程池＋调度的抽象。它在ExecutorService基础上多了schedule的功能。
+工厂方法返回的ScheduledExecutorService与ExecutorService接口的实例底层实现都是ThreadPoolExecutor。
+
+ 
+Spring2.*与Spring3对线程池，调度器，任务的封装：
+Spring2.*提供了对concurrent包里线程池的封装。这个封装接口为TaskExecutor，它的实现类命名规则是*TaskExecutor如下：
+ThreadPoolTaskExecutor
+ConcurrentTaskExecutor
+......
+Spring2.*针对调度器提供的封装是ScheduledExecutorTask，ScheduledExecutorFactoryBean
+
+Spring3对TaskExecutor的支持没变，另外，提供了新的TaskScheduler接口做为调度器的抽象； Trigger；注解；支持cron。Spring3可以用来取代quartz 80％的功能，所以，要在二者之间进行取舍。以往如果用到cron，都是使用quartz的封装。
+ 
+
+ 
+
+ 
+关于Spring3中的任务调度：
+一.@Scheduled
+@Scheduled(fixedDelay=30000)
+public void process(){
+    ........
+}
+@Scheduled会做下面二件事情：
+1.新建TaskScheduler实例（Spring3对于任务高度的改进：新的内置TaskScheduler和Trigger机制提供完善的cron支持）
+注：Spring2.*是通过创建一个ScheduledExecutorFactoryBean来构建一个调度类（这个类估计就是Spring3中的TaskScheduler，ScheduledExecutorFactoryBean本质是对ScheduledExecutorService封装，将来会往队列里注册Task任务，Spring2.*中只有TaskExecutor接口及实现类。还没有所谓的TaskScheduler接口及实现类）。
+2.annotation-driven标签会使用一个Spring的TaskScheduler实例（第一步创建的实例）注册此方法(做为一个Task)并以30秒的固定延迟执行它
+附1.：＠Scheduled里面可以调用@Async。如果只调一次，就是二个Task。如果调用N次。就是1＋N个Task交给TaskExecutor执行。
+附2：In addition to the TaskExecutor abstraction, Spring 3.0 introduces a TaskScheduler with a variety of methods for scheduling tasks to run at some point in the future.
+public interface TaskScheduler {
+    ScheduledFuture schedule(Runnable task, Trigger trigger);
+    ScheduledFuture schedule(Runnable task, Date startTime);
+    ScheduledFuture scheduleAtFixedRate(Runnable task, Date startTime, long period);
+    ScheduledFuture scheduleAtFixedRate(Runnable task, long period);
+    ScheduledFuture scheduleWithFixedDelay(Runnable task, Date startTime, long delay);
+    ScheduledFuture scheduleWithFixedDelay(Runnable task, long delay);
+}
+二.@Async
+@Async注解用来实现异步执行（异步的原理就是新起线程执行，主线程不用等待，继续执行），在annotation-driven标签的作用下，该类被代理所包装， work()方法实际上是被一个TaskExecutor实例调用的。
+The @Async annotation can be provided on a method so that invocation of that method will occur asynchronously. In other words, the caller will return immediately upon invocation and “the actual execution of the method will occur in a task that has been submitted to a Spring TaskExecutor”. 这种是会在运行时，动态封装成一个Task交给TaskExecutor执行。 @Async不会象＠Scheduled提供延迟，间隔等参数。它只表示异步。
+＠Scheduled修饰的方法会被容器调用，所以它修饰的方法不需要参数。容器也无法传不同的参。而＠Async修饰的方法由于多数不是被容器管理，而是在应用程序中被调用者调用，所以可以加参数：these methods can expect arguments, because they will be invoked in the "normal" way by callers at runtime rather than from a scheduled task being managed by the container.
+示例：
+@Async
+void doSomething(String s) {
+    // this will be executed asynchronously
+}
+Even methods that return a value can be invoked asynchronously. However, such methods are required to have a Future typed return value. This still provides the benefit of asynchronous execution so that the caller can perform other tasks prior to calling get() on that Future.
+@Async
+Future<String> returnSomething(int i) {
+    // this will be executed asynchronously
+}
+小结：
+＠Scheduled修饰的方法调用@Async修饰的方法。如果只调一次，就是二个Task。如果调用N次。就是1＋N个Task交给TaskExecutor执行。
+Spring3里面使用TaskExecutor执行Task队列（＠Scheduled修饰的方法会被加入到Task队列）。＠Async修饰的方法被动态封装的Task并提交给TaskExecutor执行。
+ 
+零碎的知识点：
+1.Executor＝线程池
+2.使用多线程时，尽量做到与线程上下文传递无关，通常放到调用链的最底层。比如hibernate的session是绑定到线程变量上的，在多线程的情况下，新线程会由于不是同一session而无法lazyload.
+3.异步的一个主要实现就是新起线程执行，主线程不用等待。　　ScheduledThreadPoolExecutor较Timer的一个优势就是线程池异步执行。Timer由于是单线程执行队列。肯定没有前者快。
+4. /**If any execution of this task
+     * takes longer than its period, then subsequent executions
+     * may start late, but will not concurrently execute.
+    */
+public ScheduledFuture<?> scheduleAtFixedRate(Runnable command,
+                          long initialDelay,
+                          long period,
+                          TimeUnit unit);
+该方法创建并执行一个在给定初始延迟后首次启用的定期任务，后续任务具有指定的周期；也就是将在initialDelay后开始执行，然后在 initialDelay+period 后执行，接着在initialDelay + 2 * period 后执行，依此类推。
+scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)
+该方法创建并执行一个在给定初始延迟后首次启用的定期任务，随后，在每一次执行终止和下一次执行开始之间都存在给定的延迟。
+注意period对于fixedRate与fixedDelay的含义是变化的. 对于fixedDelay是任务结束与下一任务开始之间的间隔.参ScheduledExecutorFactoryBean
+   /**
+     * Register the specified {@link ScheduledExecutorTask ScheduledExecutorTasks}
+     * on the given {@link ScheduledExecutorService}.
+     * @param tasks the specified ScheduledExecutorTasks (never empty)
+     * @param executor the ScheduledExecutorService to register the tasks on.
+     */
+    protected void registerTasks(ScheduledExecutorTask[] tasks, ScheduledExecutorService executor) {
+        for (int i = 0; i < tasks.length; i++) {
+            ScheduledExecutorTask task = tasks[i];
+            Runnable runnable = getRunnableToSchedule(task);
+            if (task.isOneTimeTask()) {
+                executor.schedule(runnable, task.getDelay(), task.getTimeUnit());
+            }
+            else {
+                if (task.isFixedRate()) {
+                    executor.scheduleAtFixedRate(runnable, task.getDelay(), task.getPeriod(), task.getTimeUnit());
+                }
+                else {
+                    executor.scheduleWithFixedDelay(runnable, task.getDelay(), task.getPeriod(), task.getTimeUnit());
+                }
+            }
+        }
+    }

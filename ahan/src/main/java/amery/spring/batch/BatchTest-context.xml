@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:property-placeholder location="classpath:com/amery/spring/batch/batch-default.properties" />
+    
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+    </bean>
+ 
+	<!-- solution 1, no DB    -->
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"/>    
+    <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+
+<!-- 
+    <bean id="transactionManager"  class="org.springframework.jdbc.datasource.DataSourceTransactionManager" lazy-init="true">
+        <property name="dataSource" ref="dataSource" />   
+    </bean>
+
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
+         <property name="dataSource" ref="dataSource" />
+         <property name="transactionManager" ref="transactionManager"/>
+         <property name="databaseType" value="oracle" />
+         <property name="tablePrefix" value="BATCH_"/>
+         <property name="isolationLevelForCreate" value="ISOLATION_DEFAULT"/>
+    </bean>  
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        destroy-method="close">
+        <property name="driverClassName" value="${batch.jdbc.driver}" />
+        <property name="url" value="${batch.jdbc.url}" />
+        <property name="username" value="${batch.jdbc.user}" />
+        <property name="password" value="${batch.jdbc.password}" />
+    </bean>  
+    
+	<jdbc:initialize-database data-source="dataSource" enabled="false" ignore-failures="NONE">
+        <jdbc:script location="${batch.schema.script}" />
+    </jdbc:initialize-database>
+ -->
+	<task:executor id="jobLauncherTaskExecutor" pool-size="6" rejection-policy="ABORT" />
+
+	<!-- <task:executor id="poolTaskExecutor" rejection-policy="CALLER_RUNS" /> -->
+    <task:executor id="poolTaskExecutor" rejection-policy="CALLER_RUNS" pool-size="9" />
+	<bean id="throttledTaskExecutor" class="org.springframework.batch.admin.util.ThrottledTaskExecutor">
+		<property name="taskExecutor" ref="poolTaskExecutor" />
+	</bean>    
+   	<bean id="taskExecutor" parent="throttledTaskExecutor">
+		<property name="throttleLimit" value="5" />
+	</bean>
+    
+	<batch:job id="batch">
+		<batch:step id="first" next="two">
+			<batch:tasklet ref="firstTasklet"></batch:tasklet>
+		</batch:step>
+		
+		<batch:step id="two" next="three">
+			<batch:tasklet ref="twoTasklet"></batch:tasklet>
+		</batch:step>
+		<batch:step id="three">
+			<batch:partition step="partitionerStep" partitioner="partitioner">
+				<batch:handler grid-size="3" task-executor="taskExecutor"/>
+			</batch:partition>
+		</batch:step>
+	</batch:job>
+
+	<batch:step id="partitionerStep">
+		<batch:tasklet ref="partitionerStepTasklet"></batch:tasklet>
+	</batch:step>
+
+	<bean id="partitioner" class="com.amery.spring.batch.PartitionerTest" scope="step">
+		<property name="itemCount" value="100"></property>
+	</bean>
+	
+	<bean id="firstTasklet" class="com.amery.spring.batch.FirstTasklet"></bean>
+	<bean id="twoTasklet" class="com.amery.spring.batch.TwoTasklet"></bean>
+	<bean id="partitionerStepTasklet" class="com.amery.spring.batch.PartitionerStep" scope="step">
+		<property name="number" value="#{stepExecutionContext['number']}"></property>
+	</bean>
+	<bean id="jobLauncherTestUtils" class="org.springframework.batch.test.JobLauncherTestUtils">
+		<property name="jobLauncher" ref="jobLauncher"></property>
+		<property name="jobRepository" ref="jobRepository"></property>
+		<property name="job" ref="batch"></property>
+	</bean>
+</beans>
