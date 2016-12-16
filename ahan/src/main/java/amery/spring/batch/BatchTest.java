@@ -1,5 +1,6 @@
 package amery.spring.batch;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.JobExecution;
@@ -21,6 +22,6 @@ public class BatchTest {
         JobExecution jobExecution = jobLauncherTestUtils.launchJob();//.getStatus();
 
 
-        //Assert.assertEquals("COMPLETED", jobExecution.getExitStatus());
+        Assert.assertEquals("COMPLETED", jobExecution.getExitStatus());
     }
 }
