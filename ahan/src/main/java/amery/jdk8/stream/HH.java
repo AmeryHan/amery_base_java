@@ -59,6 +59,6 @@ public class HH {
 		Clock clock = Clock.systemDefaultZone();//获取系统默认时区 (当前瞬时时间 )
 		long millis = clock.millis();//
 		
-		float f = 3.4;
+		//float f = 3.4;
 	}
 }
