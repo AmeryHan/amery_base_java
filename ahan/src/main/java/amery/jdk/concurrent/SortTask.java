@@ -28,8 +28,8 @@ class SortTask extends RecursiveAction {
             int pivot = partition(array, lo, hi);
             System.out.println("\npivot = " + pivot + ", low = " + lo + ", high = " + hi);
 			System.out.println("array" + Arrays.toString(array));
-            coInvoke(new SortTask(array, lo, pivot - 1), new SortTask(array,
-                    pivot + 1, hi));
+            //coInvoke(new SortTask(array, lo, pivot - 1), new SortTask(array,
+            //        pivot + 1, hi));
         }
     }
 

@@ -48,7 +48,7 @@ private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
     }
 
  
-
+/*
     public Long getTimeStamp() {
 
         return this.loggingEvent.timeStamp;
@@ -79,7 +79,7 @@ private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
 
     }
 
- 
+ */
 
     public String getDetail() {
 

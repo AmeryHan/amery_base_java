@@ -1,7 +1,6 @@
 package amery.activeMQ;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
@@ -19,9 +18,8 @@ public class LogQueueListener implements MessageListener
 
  
 
-    @Autowired
-
-    private ILoggingService loggingService;
+    //@Autowired
+    //private ILoggingService loggingService;
 
  
 
@@ -37,7 +35,7 @@ public class LogQueueListener implements MessageListener
 
                 final LoggingEventWrapper loggingEventWrapper = (LoggingEventWrapper)((ObjectMessage) message).getObject();
 
-                loggingService.saveLog(loggingEventWrapper);
+               // loggingService.saveLog(loggingEventWrapper);
 
             }
 

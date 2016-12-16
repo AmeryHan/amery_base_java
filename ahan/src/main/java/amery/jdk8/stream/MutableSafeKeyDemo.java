@@ -14,7 +14,7 @@ public class MutableSafeKeyDemo {
 	 */
 
 	public static void main(String[] args) {
-        Employee emp = new Employee(2);
+        Employee emp = null;//new Employee(2);
         emp.setName("Robin");
  
         // Put object in HashMap.

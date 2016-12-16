@@ -8,7 +8,7 @@ import org.apache.log4j.spi.LoggingEvent;
 
 import javax.jms.*;
 
-public class JMSQueueAppender extends AppenderSkeleton implements Appender{
+public abstract class JMSQueueAppender extends AppenderSkeleton implements Appender{
 
     
 
@@ -40,7 +40,7 @@ public boolean requiresLayout() {
 
  
 
-@Override
+//@Override
 protected synchronized void append(LoggingEvent event) {
 
  

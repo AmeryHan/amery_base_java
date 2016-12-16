@@ -4,7 +4,8 @@ import java.util.concurrent.RecursiveAction;
 
 class ConcurrentPrint extends RecursiveAction {
     protected void compute() {
-    	CyclicBarrier b = new CyclicBarrier() {
+    	/*
+        CyclicBarrier b = new CyclicBarrier() {
             protected boolean terminate(int cycle, int registeredParties) {
                 System.out.println("Cycle is " + cycle + ";"
                         + registeredParties + " parties");
@@ -12,6 +13,7 @@ class ConcurrentPrint extends RecursiveAction {
             }
         };
         int n = 3;
+
         CyclicAction[] actions = new CyclicAction[n];
         for (int i = 0; i < n; ++i) {
             final int index = i;
@@ -30,6 +32,6 @@ class ConcurrentPrint extends RecursiveAction {
         for (int i = 0; i < n; ++i)
             actions[i].fork();
         for (int i = 0; i < n; ++i)
-            actions[i].join();
+            actions[i].join();*/
     }
 }
