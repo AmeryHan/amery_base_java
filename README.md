@@ -1,8 +1,10 @@
 # bigdata
 
-*git rm -r --cached .
-*git add .
-*git commit -m 'update .gitignore'
+------
+1  git rm -r --cached .
+2  git add .
+3  git commit -m 'update .gitignore'
+------
 
 systemProp.http.proxyHost=hostname systemProp.http.proxyPort=8080 systemProp.http.proxyUser=de\username systemProp.http.proxyPassword=xxx
 
