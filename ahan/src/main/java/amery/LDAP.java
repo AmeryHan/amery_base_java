@@ -70,7 +70,7 @@ public class LDAP {
 	@SuppressWarnings("unused")
 	public void testSearch(){
 		
-		EqualsFilter f = new EqualsFilter("mail", "xxxxxxxxx@hp.com");
+		EqualsFilter f = new EqualsFilter("mail", "xxxxxxxxx@xx.com");
 		try {
 			List<?> result = ldapTemplate.search(DistinguishedName.EMPTY_PATH,
 					f.toString(), new AttributesMapper() {

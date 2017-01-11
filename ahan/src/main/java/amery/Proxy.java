@@ -11,7 +11,7 @@ public class Proxy {
 
 		String url = "http://gw.api.taobao.com/router/rest";
 
-		String proxy = "web-proxy.rose.hp.com";
+		String proxy = "web-proxy.rose.xx.com";
 
 		String port = "8080";
 

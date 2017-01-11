@@ -11,7 +11,7 @@ public class MyMainFrame extends JFrame {
 	private int nextDocNum;
 	
 	public MyMainFrame(){
-		super("Document #from HP");
+		super("Document #from xx");
 		
 		documents = new ArrayList() ;
 		

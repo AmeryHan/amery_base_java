@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:property-placeholder location="classpath:Amery/Hp/spring/batch/batch-default.properties" />
+	<context:property-placeholder location="classpath:amery/spring/batch/batch-default.properties" />
     
     <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
         <property name="jobRepository" ref="jobRepository"/>
@@ -70,12 +70,12 @@
 		<batch:tasklet ref="partitionerStepTasklet"></batch:tasklet>
 	</batch:step>
 
-	<bean id="partitioner" class="Amery.Hp.spring.batch.PartitionerTest" scope="step">
+	<bean id="partitioner" class="amery.spring.batch.PartitionerTest" scope="step">
 	</bean>
 	
-	<bean id="firstTasklet" class="Amery.Hp.spring.batch.FirstTasklet"></bean>
-	<bean id="twoTasklet" class="Amery.Hp.spring.batch.TwoTasklet"></bean>
-	<bean id="partitionerStepTasklet" class="Amery.Hp.spring.batch.PartitionerStep" scope="step">
+	<bean id="firstTasklet" class="amery.spring.batch.FirstTasklet"></bean>
+	<bean id="twoTasklet" class="amery.spring.batch.TwoTasklet"></bean>
+	<bean id="partitionerStepTasklet" class="amery.spring.batch.PartitionerStep" scope="step">
 		<property name="number" value="#{stepExecutionContext['number']}"></property>
 	</bean>
 	<bean id="jobLauncherTestUtils" class="org.springframework.batch.test.JobLauncherTestUtils">
