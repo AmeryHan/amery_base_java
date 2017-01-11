@@ -14,9 +14,9 @@ public class DBConnection {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@g2t0312c.austin.hp.com:1525:MPOI1";
-			Connection c = DriverManager.getConnection(url, "MPOWEBTR",
-					"MPO22T_ABABB");
+			String url = "jdbc:oracle:thin:@xxxx.com:1525:xxx";
+			Connection c = DriverManager.getConnection(url, "xxx",
+					"xxx");
 			Statement stmt = c.createStatement();
 			String www = "SELECT * FROM wave ";
 			ResultSet rs = stmt.executeQuery(www);

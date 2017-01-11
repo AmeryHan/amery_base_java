@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 俩种job定义方式，一种是反射，另外一种是实现job接口 -->
+  <!-- 要调用的工作类 -->
+    <bean id="quartzJob" class="amery.spring.quartz.Task"></bean>
+    <!-- 定义调用对象和调用对象的方法 -->
+    <bean id="jobtask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="quartzJob" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>work</value>
+        </property>
+    </bean>
+    
+    <bean name="reportTaskJobDetailBean"  
+        class="org.springframework.scheduling.quartz.JobDetailBean">  
+        <property name="jobClass" value="amery.spring.quartz.BusinessReport" />
+    </bean>    
+    <!-- 俩种trigger cron和simple -->
+    <!-- 定义触发时间 -->
+    <bean id="doTimeCronTrigger"
+        class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobtask" />
+        </property>
+        <!-- cron表达式 -->
+        <property name="cronExpression">
+            <value>10,15,20,25,30,35,40,45,50,55 * * * * ?</value>
+        </property>
+    </bean>
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<!-- <property name="jobDetail" ref="jobtask" /> -->
+		<property name="jobDetail" ref="reportTaskJobDetailBean" />
+		<property name="repeatInterval" value="10" />
+	</bean> 
+	<!-- 俩种trigger cron和simple -->
+    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+    <bean id="startQuertz" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <!-- <ref bean="doTimeCronTrigger" /> -->
+                <ref bean="simpleTrigger" />
+            </list>
+        </property>
+    </bean>
+    
+
+</beans>
