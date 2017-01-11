@@ -1,4 +1,4 @@
-rootProject.name = 'message'
+rootProject.name = 'bigdata'
 include 'kafka'
 include 'rabbitmq'
 include 'ahan'

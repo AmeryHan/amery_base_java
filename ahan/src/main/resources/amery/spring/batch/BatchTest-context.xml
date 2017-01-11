@@ -76,13 +76,13 @@
 		<batch:tasklet ref="partitionerStepTasklet"></batch:tasklet>
 	</batch:step>
 
-	<bean id="partitioner" class="com.amery.spring.batch.PartitionerTest" scope="step">
+	<bean id="partitioner" class="amery.spring.batch.PartitionerTest" scope="step">
 		<property name="itemCount" value="100"></property>
 	</bean>
 	
-	<bean id="firstTasklet" class="com.amery.spring.batch.FirstTasklet"></bean>
-	<bean id="twoTasklet" class="com.amery.spring.batch.TwoTasklet"></bean>
-	<bean id="partitionerStepTasklet" class="com.amery.spring.batch.PartitionerStep" scope="step">
+	<bean id="firstTasklet" class="amery.spring.batch.FirstTasklet"></bean>
+	<bean id="twoTasklet" class="amery.spring.batch.TwoTasklet"></bean>
+	<bean id="partitionerStepTasklet" class="amery.spring.batch.PartitionerStep" scope="step">
 		<property name="number" value="#{stepExecutionContext['number']}"></property>
 	</bean>
 	<bean id="jobLauncherTestUtils" class="org.springframework.batch.test.JobLauncherTestUtils">
