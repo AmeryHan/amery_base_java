@@ -19,9 +19,8 @@ public class BatchTest {
     @Test
     public void testJob() throws Exception {
         
-        JobExecution jobExecution = jobLauncherTestUtils.launchJob();//.getStatus();
+        JobExecution jobExecution = jobLauncherTestUtils.launchJob();
 
-
-        Assert.assertEquals("COMPLETED", jobExecution.getExitStatus());
+        Assert.assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode());
     }
 }
