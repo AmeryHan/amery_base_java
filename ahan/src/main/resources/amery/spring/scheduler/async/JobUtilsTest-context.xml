@@ -9,7 +9,7 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd  
     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">  
   
-    <context:component-scan base-package="com.amery.spring.scheduler.async" />  
+    <context:component-scan base-package="amery.spring.scheduler.async" />
    
     <task:annotation-driven />  
       

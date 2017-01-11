@@ -4,14 +4,14 @@
     <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" ":/spring-beans.dtd">  
 -->  
 <beans>  
-    <bean id="businessReport" class="com.amery.spring.quartz.BusinessReport" />  
+    <bean id="businessReport" class="amery.spring.quartz.BusinessReport" />
   
   
   
   
     <bean name="reportTask"  
         class="org.springframework.scheduling.quartz.JobDetailBean">  
-        <property name="jobClass" value="com.amery.spring.quartz.BusinessReport" />  
+        <property name="jobClass" value="amery.spring.quartz.BusinessReport" />
     </bean>  
   
     <!-- 触发器 -->  
@@ -35,7 +35,7 @@
                 <ref bean="cronTrigger" />  
             </list>  
         </property>  
-        <property name="configLocation" value="classpath:com/amery/spring/quartz/quartz.properties" />   
+        <property name="configLocation" value="classpath:amery/spring/quartz/quartz.properties" />
     </bean>  
   
   

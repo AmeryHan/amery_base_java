@@ -7,7 +7,7 @@ public class JDBCJobStoreTest {
 
     public static void main(String[] args) {
         System.out.println("Test start.");
-        ApplicationContext context = new ClassPathXmlApplicationContext("com/amery/spring/quartz/JDBCJobStore.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("amery/spring/quartz/JDBCJobStore.xml");
         System.out.print("Test end..\n");
     }
 
