@@ -10,13 +10,13 @@ import rx.Subscriber;
  * Created by ahan on 14/02/2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ObservableMain {
+public class Standard {
 
 	//深入浅出RxJava（一：基础篇） - 大头鬼Bruce - 博客频道 - CSDN.NET
 	//http://blog.csdn.net/lzyzsd/article/details/41833541/
 
 	@Test
-	public void call1() {
+	public void main() {
 		Observable<String> myObservable = Observable.create(
 			new Observable.OnSubscribe<String>() {
 				@Override
