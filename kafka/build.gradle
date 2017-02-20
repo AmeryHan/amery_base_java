@@ -9,28 +9,11 @@ repositories {
     mavenCentral()
 }
 
-List loggers = [
-        "org.slf4j:slf4j-api:${slf4jVersion}",
-        "org.slf4j:jcl-over-slf4j:${slf4jVersion}",
-        "org.slf4j:log4j-over-slf4j:${slf4jVersion}",
-        "org.slf4j:jul-to-slf4j:${slf4jVersion}",
-        "ch.qos.logback:logback-core:${logbackVersion}",
-        "ch.qos.logback:logback-classic:${logbackVersion}",
-        "me.moocar:logback-gelf:0.12",
-        "org.logback-extensions:logback-ext-spring:0.1.2",
-        "io.projectreactor:reactor-logback:2.0.3.RELEASE",
-        "org.codehaus.groovy:groovy-all:2.4.3", // groovy for logback
-        "log4j:apache-log4j-extras:1.1"
-
-]
-
 dependencies {
 
     compile "org.apache.kafka:kafka_2.10:${kafkaVersion}"
     compile "org.apache.kafka:kafka-clients:${kafkaVersion}"
-    compile 'io.reactivex.rxjava2:rxjava:2.0.0'
     compile "org.projectlombok:lombok:${lombokVersion}"
-    compile loggers
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

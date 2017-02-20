@@ -1,4 +1,4 @@
-package rxJava;
+package rxJava2;
 
 import io.reactivex.Flowable;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ public class FlowableTest {
 				Subscription sub;
 				//当订阅后，会首先调用这个方法，其实就相当于onStart()，
 				//传入的Subscription s参数可以用于请求数据或者取消订阅
-				@Override
+				//@Override
 				public void onSubscribe(Subscription s) {
 					log.warn("TAG","onsubscribe start");
 					sub=s;
@@ -26,16 +26,16 @@ public class FlowableTest {
 					log.warn("TAG","onsubscribe end");
 				}
 
-				@Override
+				//@Override
 				public void onNext(Integer o) {
 					log.warn("TAG","onNext--->"+o);
 					sub.request(1);
 				}
-				@Override
+				//@Override
 				public void onError(Throwable t) {
 					t.printStackTrace();
 				}
-				@Override
+				//@Override
 				public void onComplete() {
 					log.warn("TAG","onComplete");
 				}
