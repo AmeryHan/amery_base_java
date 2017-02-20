@@ -1,4 +1,4 @@
-package amery.rcJava;
+package amery.rxJava;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

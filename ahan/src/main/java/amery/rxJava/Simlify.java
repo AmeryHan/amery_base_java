@@ -1,4 +1,4 @@
-package amery.rcJava;
+package amery.rxJava;
 
 import junit.framework.Assert;
 import org.junit.Test;

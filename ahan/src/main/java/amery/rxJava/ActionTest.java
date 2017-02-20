@@ -1,4 +1,4 @@
-package amery.rcJava;
+package amery.rxJava;
 
 import org.junit.Test;
 import rx.Observable;
@@ -12,6 +12,8 @@ public class ActionTest {
 	@Test
 	public void test() {
 
+		//rx 1.0
+
 		Observable.just("Hello, world!")
 			.subscribe(new Action1<String>() {
 				@Override
@@ -19,6 +21,7 @@ public class ActionTest {
 					System.out.println(s);
 				}
 			});
+
 
 		Observable.just("Hello, world!11111")
 			.subscribe(s -> System.out.println(s));
