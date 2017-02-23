@@ -1,5 +1,6 @@
-package amery.jdk.lambda;
+package amery.entity;
 
+import amery.jdk.lambda.PersonInterface;
 import org.springframework.batch.sample.domain.Person;
 
 import java.util.ArrayList;
@@ -19,4 +20,5 @@ public class People {
 	 );
 	 return res;
 	 }
-	}
+
+}

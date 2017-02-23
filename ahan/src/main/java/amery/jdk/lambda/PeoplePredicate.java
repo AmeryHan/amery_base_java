@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-class People1{
+class PeoplePredicate {
 	 private List<Person> persons= new ArrayList<Person>();
 	 public List<Person> getMaleList(Predicate<Person> predicate) {
 	 List<Person> res = new ArrayList<Person>();

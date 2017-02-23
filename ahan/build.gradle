@@ -59,7 +59,39 @@ List lombok = [
         "org.projectlombok:lombok:${lombokVersion}"
 ]
 
+
+List guava = [
+        "com.google.guava:guava:${guavaVersion}"
+]
+
+List xml = [
+        "com.thoughtworks.xstream:xstream:1.4.9"
+]
+
+List validator = [
+        "org.hibernate:hibernate-validator:${validatorVersion}",
+        "org.hibernate:hibernate-validator-annotation-processor:${validatorVersion}"
+]
+
+List javaee = [
+        "javax.inject:javax.inject:1"
+]
+
+List json = [
+        "org.codehaus.jackson:jackson-mapper-asl:1.9.13",
+        "org.codehaus.jackson:jackson-core-asl:1.9.13",
+        "com.fasterxml.jackson.core:jackson-databind:${jackson2Version}",
+        "com.fasterxml.jackson.core:jackson-annotations:${jackson2Version}",
+        "com.fasterxml.jackson.core:jackson-core:${jackson2Version}",
+        "net.bigpoint:jackson-legacy-introspector:0.0.2"
+]
+
+List httpclient = [
+        "org.apache.httpcomponents:httpclient:4.5.1"
+]
+
 dependencies {
+    compile guava
     compile loggers
     compile apacheCommons
     compile springframeworks
@@ -73,6 +105,7 @@ dependencies {
     compile "org.mockito:mockito-all:1.9.0"
     compile lombok
     compile 'io.reactivex:rxjava:1.2.4'
+
 
     //compile "jms:jms:1.1"
     testCompile group: 'junit', name: 'junit', version: '4.11'
