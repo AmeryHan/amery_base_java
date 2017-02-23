@@ -1,5 +1,6 @@
 package amery.jdk8.stream;
 
+import amery.entity.Room;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,6 +23,25 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class TestStream {
+
+	@Test
+	public void list2list() {
+
+		List<Person> list = Lists.newArrayList();
+		list.add(new Person(1, "name1"));
+		list.add(new Person(2, "name2"));
+
+		List<Room> rooms = list.stream().map(person -> {
+			Room room = Room.builder()
+				.id(person.getNo())
+				.name(person.getName())
+				.build();
+			return room;
+		}).collect(toList());
+
+		junit.framework.Assert.assertTrue(null != rooms);
+
+	}
 
 	@Test
 	public void convert_list_to_map_with_java8_lambda () {
