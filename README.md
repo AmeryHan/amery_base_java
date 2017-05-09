@@ -16,6 +16,10 @@ git track
 git push
 ------
 
+--check track info--
+git branch-vv
+-----
+
 systemProp.http.proxyHost=hostname systemProp.http.proxyPort=8080 systemProp.http.proxyUser=de\username systemProp.http.proxyPassword=xxx
 
 systemProp.https.proxyHost=hostname systemProp.https.proxyPort=8080 systemProp.https.proxyUser=de\username systemProp.https.proxyPassword=xxx
