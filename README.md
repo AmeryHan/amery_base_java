@@ -1,4 +1,5 @@
-# bigdata
+# amery_base_java
+amery_base_java include java and scala
 
 ------
 1  git rm -r --cached .
