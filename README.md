@@ -2,9 +2,18 @@
 amery_base_java include java and scala
 
 ------
+git init
 1  git rm -r --cached .
 2  git add .
 3  git commit -m 'update .gitignore'
+------
+
+------
+git switch remote
+git remote remove origin
+git remote add new_url
+git track
+git push
 ------
 
 systemProp.http.proxyHost=hostname systemProp.http.proxyPort=8080 systemProp.http.proxyUser=de\username systemProp.http.proxyPassword=xxx
