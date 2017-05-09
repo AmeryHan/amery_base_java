@@ -1,6 +1,6 @@
 package connectscala;
 
-import yjmyzz.Hello;
+import function.Hello;
 
 /**
  * Created by ahan on 09/05/2017.
