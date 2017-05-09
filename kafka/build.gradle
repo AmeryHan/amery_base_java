@@ -1,0 +1,19 @@
+group 'ahan.bigdata'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile "org.apache.kafka:kafka_2.10:${kafkaVersion}"
+    compile "org.apache.kafka:kafka-clients:${kafkaVersion}"
+    compile "org.projectlombok:lombok:${lombokVersion}"
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
