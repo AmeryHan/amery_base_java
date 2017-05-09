@@ -6,7 +6,11 @@ package yjmyzz
 class Hello {
 
   def sayHello(x: String): Unit = {
-    println("hello amery, I am " + x);
+    println("hello amery, I am \t " + x);
   }
 
+}
+
+final case class Symbol private (name: String) {
+  override def toString: String = "'" + name
 }
