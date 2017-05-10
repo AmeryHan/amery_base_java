@@ -37,5 +37,20 @@ object Basic {
     println("a || b = " + (e||f) );
 
     println("!(a && b) = " + !(e && f) );
+
+    // 定义整型 List
+    val x = List(1,2,3,4)
+
+    // 定义 Set
+    var x1 = Set(1,3,5,7)
+
+    // 定义 Map
+    val x2 = Map("one" -> 1, "two" -> 2, "three" -> 3)
+
+    // 创建两个不同类型元素的元组
+    val x3 = (10, "Runoob")
+
+    // 定义 Option
+    val x5:Option[Int] = Some(5)
   }
 }

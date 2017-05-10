@@ -1,6 +1,6 @@
 package connectscala;
 
-import function.Hello;
+import scalaclass.Hello;
 
 /**
  * Created by ahan on 09/05/2017.

@@ -1,9 +1,10 @@
-package function
+
+import scala.Array._
 
 /**
   * Created by ahan on 09/05/2017.
   */
-object add {
+object AddArray {
   def addInt(a:Int, b:Int) : Int = {
     var sum: Int = 0
     sum = a + b
@@ -45,6 +46,22 @@ object add {
       }
     }
     println("max=" + max);
+
+
+    var myList1 = range(10, 20, 2)
+    var myList2 = range(10,20)
+
+    // 输出所有数组元素
+    for ( x <- myList1 ) {
+      println( " " + x )
+    }
+    println()
+    for ( x <- myList2 ) {
+      println( " " + x )
+    }
+
+    val ita = Iterable(20, 40, 2, 50, 69, 90);
+    println("max value=" + ita.max);
 
 
   }

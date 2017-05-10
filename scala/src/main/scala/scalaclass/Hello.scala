@@ -1,4 +1,4 @@
-package function
+package scalaclass
 
 /**
   * Created by ahan on 09/05/2017.
