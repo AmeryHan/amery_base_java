@@ -1,0 +1,32 @@
+
+http://www.runoob.com/docker/docker-hello-world.html
+
+
+cd /Users/ahan/work/ahan/amery_base_java
+docker build -t nginx .
+
+----------------------------container operation
+docker ps -a
+
+docker run -d -p 5000:5000 ubuntu:15.10
+
+docker top 3dc334687f68
+docker start 3dc334687f68
+docker inspect 3dc334687f68
+docker rm a474d1e2ef4d
+
+docker attach a474d1e2ef4d
+docker exec -it 775c7c9ee1e1 /bin/bash
+
+----------------------------images operation
+docker images
+docker rmi  ameryhan/huetelnet
+//this is image id
+docker tag 860c279d2fec runoob/centos:dev
+
+----------------------------port
+docker run -d -P training/webapp python app.py
+docker run -d -p 5000:5000 training/webapp python app.py
+docker run -d -p 127.0.0.1:5001:5002 training/webapp python app.py
+docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
+
