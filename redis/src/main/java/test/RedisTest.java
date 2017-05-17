@@ -24,11 +24,10 @@ public class RedisTest {
 	private static final Logger logger = LoggerFactory.getLogger(RedisTest.class);
 
 	@Test
-	public void testQuartz(){
+	public void testQuartz() {
 		logger.info("start");
 		redisTemplate.opsForValue().set("key", "value");
 		logger.info("end");
 	}
-
 
 }

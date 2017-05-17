@@ -5,6 +5,7 @@
     <entry key="redis.sentinels">10.255.10.124:26379,10.255.10.125:26379</entry>
     <entry key="redis.poolName">atomic_counter_dev</entry>
     <entry key="redis.password"></entry>
+    <entry key="redis.timeout">2002</entry>
 
 </properties>
 

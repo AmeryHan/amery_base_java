@@ -39,7 +39,7 @@ public class ConfigPropertiesResourceLoader implements ConfigPropertiesLoader {
 				return new Properties();
 			}
 		} catch (IOException ex) {
-			log.error("Failed to load configuration properties. Resource - " + resource.toString() , ex);
+			log.error("Failed to load configuration properties. Resource - " + resource.toString(), ex);
 			throw new IllegalStateException("Failed to load configuration properties. Resource - " + resource.toString(), ex);
 		}
 	}

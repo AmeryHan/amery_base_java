@@ -34,18 +34,10 @@ public class ConfigLoadExecutor {
 	public Properties execute() {
 		composite.addConfigPropertiesLoader(localProperties(PARENT_PROPERTIES_LOCATION));
 		composite.addConfigPropertiesLoader(localProperties(PROJECT_PROPERTIES_LOCATION));
-
-		// after project config
-		composite.addConfigPropertiesLoader(getLoaderAfterProjectConfig());
-		// from -Dconfig.override
 		composite.addConfigPropertiesLoader(configOverride());
 
 		Properties properties = composite.loadProperties();
 		return properties;
-	}
-
-	ConfigPropertiesLoader getLoaderAfterProjectConfig() {
-		return new PathsConfigPropertiesLoader(applicationContext, getAfterProjects(), false);
 	}
 
 	ConfigPropertiesLoader localProperties(String propertiesName) {

@@ -14,6 +14,8 @@ import java.util.Properties;
 @Slf4j
 public class ConfigOverrideConfigPropertiesLoader implements ConfigPropertiesLoader {
 
+	//config call not config part
+
 	public static final String OVERRIDE_PROPERTY_NAME = "config.override";
 
 	public ConfigOverrideConfigPropertiesLoader(ConfigurableApplicationContext applicationContext) {

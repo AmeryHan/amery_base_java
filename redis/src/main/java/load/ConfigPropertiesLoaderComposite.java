@@ -1,6 +1,5 @@
 package load;
 
-import com.google.common.base.Optional;
 import load.inter.ConfigPropertiesLoader;
 import lombok.Getter;
 
@@ -23,13 +22,5 @@ public class ConfigPropertiesLoaderComposite implements ConfigPropertiesLoader {
 
 	public boolean addConfigPropertiesLoader(ConfigPropertiesLoader configPropertiesLoader) {
 		return loaders.add(configPropertiesLoader);
-	}
-
-	public boolean addConfigPropertiesLoader(Optional<ConfigPropertiesLoader> configPropertiesLoader) {
-		if (configPropertiesLoader.isPresent()) {
-			return loaders.add(configPropertiesLoader.get());
-		}
-		return false;
-
 	}
 }

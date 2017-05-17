@@ -14,7 +14,6 @@ import redis.clients.jedis.Protocol;
 
 import java.util.Set;
 
-
 @Accessors(chain = true)
 public class SentinelRedisConnectionFactoryBuilder {
 	public static final String JMX_NAMEBASE = "redis.client.jedis:type=XXXXSentinelPool,name=";
@@ -58,7 +57,6 @@ public class SentinelRedisConnectionFactoryBuilder {
 	@Getter
 	@Setter
 	private int database = Protocol.DEFAULT_DATABASE;
-
 
 	public SentinelRedisConnectionFactoryBuilder(@NonNull Environment environment, @NonNull String propertiesPrefix) {
 		this.environment = environment;
