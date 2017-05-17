@@ -1,5 +1,6 @@
 package other;
 
+import load.basic.ConfigPropertiesResourceLoader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.io.Resource;
@@ -21,7 +22,8 @@ public class PropertiesLocationWithProfilePropertiesLoader extends ConfigPropert
 
 	private String propertiesName;
 
-	@Override public Properties loadProperties() {
+	@Override
+	public Properties loadProperties() {
 		String[] activeProfiles = applicationContext.getEnvironment().getActiveProfiles();
 		String profile = activeProfiles[0];
 		String path = getLocationWithProfile(propertiesName, profile);
@@ -31,7 +33,7 @@ public class PropertiesLocationWithProfilePropertiesLoader extends ConfigPropert
 		return super.loadProperties();
 	}
 
-	protected String getLocationWithProfile(String location, String profile) {
+	private String getLocationWithProfile(String location, String profile) {
 		return location.replaceAll("\\$\\{" + ACTIVE_PROFILES_PROPERTY_NAME + "}", profile);
 	}
 }

@@ -1,7 +1,7 @@
 package other;
 
 import load.ConfigPropertiesLoaderComposite;
-import load.inter.ConfigPropertiesLoader;
+import load.basic.ConfigPropertiesLoader;
 import load.overrideload.ConfigOverrideConfigPropertiesLoader;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

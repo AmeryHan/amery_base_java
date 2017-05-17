@@ -2,7 +2,7 @@ package load.overrideload;
 
 import com.google.common.collect.Lists;
 import load.ConfigPropertiesLoaderComposite;
-import load.inter.ConfigPropertiesLoader;
+import load.basic.ConfigPropertiesLoader;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ConfigurableApplicationContext;

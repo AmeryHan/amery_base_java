@@ -65,6 +65,22 @@ public class SentinelRedisConnectionFactoryBuilder {
 		populateProperties();
 	}
 
+	public SentinelRedisConnectionFactory build() {
+		JedisPoolConfig poolConfig = new JedisPoolConfig();
+		poolConfig.setMaxTotal(maxTotal);
+		poolConfig.setMaxIdle(maxIdle);
+		poolConfig.setMinIdle(minIdle);
+		poolConfig.setMaxWaitMillis(maxWaitMillis);
+		poolConfig.setJmxNamePrefix(poolName);
+		poolConfig.setJmxNameBase(JMX_NAMEBASE);
+
+		JedisSentinelPool pool = new JedisSentinelPool(poolName, sentinels, poolConfig, timeout, normalizePassword(password));
+
+		SentinelRedisConnectionFactory redisConnectionFactory = new SentinelRedisConnectionFactory(pool);
+		redisConnectionFactory.setDatabase(database);
+		return redisConnectionFactory;
+	}
+
 	private String getRequiredEnvProperty(String postfix) {
 		return environment.getRequiredProperty(propertiesPrefix + postfix);
 	}
@@ -97,22 +113,6 @@ public class SentinelRedisConnectionFactoryBuilder {
 		setMaxWaitMillis(environment.getRequiredProperty(GLOBAL_MAX_WAIT_MILLIS, Long.class));
 
 		setTimeout(getRequiredEnvProperty(TIMEOUT, Integer.class));
-	}
-
-	public SentinelRedisConnectionFactory build() {
-		JedisPoolConfig poolConfig = new JedisPoolConfig();
-		poolConfig.setMaxTotal(maxTotal);
-		poolConfig.setMaxIdle(maxIdle);
-		poolConfig.setMinIdle(minIdle);
-		poolConfig.setMaxWaitMillis(maxWaitMillis);
-		poolConfig.setJmxNamePrefix(poolName);
-		poolConfig.setJmxNameBase(JMX_NAMEBASE);
-
-		JedisSentinelPool pool = new JedisSentinelPool(poolName, sentinels, poolConfig, timeout, normalizePassword(password));
-
-		SentinelRedisConnectionFactory redisConnectionFactory = new SentinelRedisConnectionFactory(pool);
-		redisConnectionFactory.setDatabase(database);
-		return redisConnectionFactory;
 	}
 
 	private String normalizePassword(String password) {

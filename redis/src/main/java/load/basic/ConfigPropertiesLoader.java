@@ -1,4 +1,4 @@
-package load.inter;
+package load.basic;
 
 import java.util.Properties;
 

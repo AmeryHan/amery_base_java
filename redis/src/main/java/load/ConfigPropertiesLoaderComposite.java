@@ -1,6 +1,6 @@
 package load;
 
-import load.inter.ConfigPropertiesLoader;
+import load.basic.ConfigPropertiesLoader;
 import lombok.Getter;
 
 import java.util.ArrayList;
