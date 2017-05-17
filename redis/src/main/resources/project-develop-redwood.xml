@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <entry key="redis.sentinels">10.255.10.124:26379,10.255.10.125:26379</entry>
+    <entry key="redis.poolName">atomic_counter_dev</entry>
+    <entry key="redis.password"></entry>
+
+</properties>
+

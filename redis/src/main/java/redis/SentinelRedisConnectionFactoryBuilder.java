@@ -1,8 +1,11 @@
+package redis;
+
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.core.env.Environment;
 import redis.clients.jedis.JedisPoolConfig;
@@ -107,11 +110,15 @@ public class SentinelRedisConnectionFactoryBuilder {
 		poolConfig.setJmxNamePrefix(poolName);
 		poolConfig.setJmxNameBase(JMX_NAMEBASE);
 
-		JedisSentinelPool pool = new JedisSentinelPool(poolName, sentinels, poolConfig, timeout, password);
+		JedisSentinelPool pool = new JedisSentinelPool(poolName, sentinels, poolConfig, timeout, normalizePassword(password));
 
 		SentinelRedisConnectionFactory redisConnectionFactory = new SentinelRedisConnectionFactory(pool);
 		redisConnectionFactory.setDatabase(database);
 		return redisConnectionFactory;
+	}
+
+	private String normalizePassword(String password) {
+		return StringUtils.defaultIfBlank(password, null);
 	}
 
 }
