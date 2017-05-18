@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="redis.poolName">vitamin-redis</entry>
+	<entry key="redis.poolName">amery-redis</entry>
 	<entry key="redis.password"></entry>
 	<entry key="redis.maxTotal">4</entry>
 	<entry key="redis.maxIdle">4</entry>

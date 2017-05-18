@@ -10,6 +10,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by ahan on 17/05/2017.
  */
@@ -26,7 +28,7 @@ public class RedisTest {
 	@Test
 	public void testQuartz() {
 		logger.info("start");
-		redisTemplate.opsForValue().set("key", "value");
+		redisTemplate.opsForValue().set("key", "value", 50, TimeUnit.DAYS);
 		logger.info("end");
 	}
 
