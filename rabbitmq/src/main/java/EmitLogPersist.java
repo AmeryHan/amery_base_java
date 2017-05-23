@@ -3,7 +3,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
-public class NewTask {
+public class EmitLogPersist {
 
   private static final String TASK_QUEUE_NAME = "task_queue";
 
