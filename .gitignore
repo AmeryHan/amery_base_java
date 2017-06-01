@@ -28,5 +28,6 @@ sonar-project.*
 target/
 tmp
 logs/
+.gitosc*
 
 
