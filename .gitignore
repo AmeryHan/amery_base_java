@@ -27,5 +27,6 @@ rebel.xml
 sonar-project.*
 target/
 tmp
+logs/
 
 
