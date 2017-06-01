@@ -40,3 +40,5 @@ http://www.ibm.com/developerworks/cn/java/j-lo-jdk8newfeature/index.html ava 8 æ
 
 http://blog.csdn.net/jackfrued/article/details/17740651
 
+need change to 'sourceCompatibility = 1.8'
+

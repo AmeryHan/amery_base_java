@@ -3,10 +3,12 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    //maven{ url 'http://oss.sonatype.org/content/repositories/github-releases'}
+    //maven{ url 'http://maven.oschina.net/content/groups/public/'}
 }
 
 sourceSets {
@@ -30,6 +32,8 @@ task "createDirs" << {
 dependencies {
 
     compile "org.apache.storm:storm-core:1.1.0"
+    compile "com.google.guava:guava:15.0"
+    compile "commons-collections:commons-collections:3.2.1"
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
