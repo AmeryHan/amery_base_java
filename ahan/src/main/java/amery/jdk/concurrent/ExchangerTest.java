@@ -1,4 +1,4 @@
-package amery.concurrent;
+package amery.jdk.concurrent;
 
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.ExecutorService;
