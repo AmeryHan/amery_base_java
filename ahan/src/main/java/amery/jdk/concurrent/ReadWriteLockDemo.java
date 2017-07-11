@@ -54,4 +54,8 @@ public class ReadWriteLockDemo {
 			}
 		}).start();
 	}
+
+	/**
+	 * 从上面的执行结果可见，thread 1和thread 2都只需获得读锁，因此它们可以并行执行。而thread 3因为需要获取写锁，必须等到thread 1和thread 2释放锁后才能获得锁。
+	 */
 }

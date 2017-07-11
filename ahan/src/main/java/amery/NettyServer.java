@@ -1,13 +1,10 @@
 package amery;
 
-import java.nio.channels.Channels;
-import java.util.concurrent.Executors;
-
 /**
  * Created by ahan on 02/06/2017.
  */
 public class NettyServer {
-
+/*
 	public static void main(String[] args) {
 		ServerBootstrap bootstrap = new ServerBootstrap(new NioServerSocketChannelFactory(Executors.newCachedThreadPool(), Executors.newCachedThreadPool()));
 
@@ -52,5 +49,5 @@ public class NettyServer {
 			System.out.println("\n等待客户端输入。。。");
 			super.channelConnected(ctx, e);
 		}
-	}
+	}*/
 }
