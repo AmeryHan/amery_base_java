@@ -22,7 +22,7 @@ public class Lam {
 				}
 				};
 				//2. 使用 Lambda 表达式
-				//Function<Integer, String> f2 = (t)-> String.valueOf(t);
+				Function<Integer, String> f2 = t1 -> String.valueOf(t1);
 				//3. 使用方法引用的方式
 				Function<Integer, String> f1 = String::valueOf;
 
