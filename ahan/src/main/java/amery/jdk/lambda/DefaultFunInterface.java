@@ -8,5 +8,5 @@ public interface DefaultFunInterface {
 	
 	public static int find(){
 		return 1;
-		}
+	}
 }

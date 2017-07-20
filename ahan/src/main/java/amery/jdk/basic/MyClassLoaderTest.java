@@ -53,5 +53,7 @@ public class MyClassLoaderTest {
 		System.out.println(obj instanceof MyClassLoaderTest);
 
 		System.out.println(myLoader.getParent().toString());
+
+		//class loader 不一样，俩个class就不一样
 	}
 }
