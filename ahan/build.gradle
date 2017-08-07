@@ -105,6 +105,7 @@ dependencies {
     compile "org.mockito:mockito-all:1.9.0"
     compile lombok
     compile 'io.reactivex:rxjava:1.2.4'
+    compile 'com.typesafe.akka:akka-actor_2.11:2.4.4'
 
 
     //compile "jms:jms:1.1"
