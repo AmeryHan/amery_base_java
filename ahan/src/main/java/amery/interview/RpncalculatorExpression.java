@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Rpncalculator {
+public class RpncalculatorExpression {
 	
 	static final HashMap<String, Integer> prec;
 
