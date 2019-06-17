@@ -11,7 +11,7 @@ import java.util.Properties;
 @Slf4j
 public class ConfigurationPropertiesApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-	//@Override
+	@Override
 	public void initialize(ConfigurableApplicationContext applicationContext) {
 
 		System.setProperty("spring.profiles.active", "develop");
