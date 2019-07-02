@@ -28,9 +28,9 @@ import javax.annotation.Resource;
 
 @Configuration
 @EnableBatchProcessing
-public class SpringBatchConfiguration {
+public class SpringBatchChunkJobConfiguration {
 
-    private static final Logger log = LoggerFactory.getLogger(SpringBatchConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(SpringBatchChunkJobConfiguration.class);
 
     @Resource
     private JobBuilderFactory jobBuilderFactory;
@@ -65,16 +65,15 @@ public class SpringBatchConfiguration {
 
     @Bean
     public Job dataHandleJob() {
-        return jobBuilderFactory.get("dataHandleJob").
+        return jobBuilderFactory.get("chunkJob-reader-processor-writee").
                 incrementer(new RunIdIncrementer()).
-                start(handleDataStep()).
+                start(step1()).
                 listener(jobListener).
                 build();
                 //start是JOB执行的第一个step
 //                next(xxxStep()).
 //                next(xxxStep()).
 //                ...
-
     }
 
     /**
@@ -84,7 +83,7 @@ public class SpringBatchConfiguration {
      * ItemWriter : 用于写数据
      */
     @Bean
-    public Step handleDataStep() {
+    public Step step1() {
         /**
          * chunk <输入,输出> 。chunk通俗的讲类似于SQL的commit; 这里表示处理(processor)100条后写入(writer)一次。
          * tasklet
@@ -92,8 +91,8 @@ public class SpringBatchConfiguration {
         return stepBuilderFactory.get("getData")
                 //.tasklet()
                 // <输入,输出> 。chunk通俗的讲类似于SQL的commit; 这里表示处理(processor)100条后写入(writer)一次。
-                .<User, Message>chunk(100).
-                faultTolerant().retryLimit(3).retry(Exception.class).skipLimit(100).skip(Exception.class)
+                .<User, Message>chunk(100)
+                .faultTolerant().retryLimit(3).retry(Exception.class).skipLimit(100).skip(Exception.class)
                 //捕捉到异常就重试,重试100次还是异常,JOB就停止并标志失败
                 .reader(getDataReader())
                 .processor(getDataProcessor())
