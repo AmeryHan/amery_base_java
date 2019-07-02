@@ -3,29 +3,23 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 List loggers = [
-        "org.slf4j:slf4j-api:${slf4jVersion}",
-        "org.slf4j:jcl-over-slf4j:${slf4jVersion}",
-        "org.slf4j:log4j-over-slf4j:${slf4jVersion}",
-        "org.slf4j:jul-to-slf4j:${slf4jVersion}",
-        "ch.qos.logback:logback-core:${logbackVersion}",
-        "ch.qos.logback:logback-classic:${logbackVersion}",
-        "me.moocar:logback-gelf:0.12",
-        "org.logback-extensions:logback-ext-spring:0.1.2",
-        "io.projectreactor:reactor-logback:2.0.3.RELEASE",
+        "org.slf4j:slf4j-api:1.7.26",
+        "org.apache.logging.log4j:log4j-core:2.12.0",
+        "com.lmax:disruptor:3.4.2",
+        "org.apache.logging.log4j:log4j-slf4j-impl:2.12.0",
+//        "org.slf4j:log4j-over-slf4j:1.7.26",
+//        'org.slf4j:slf4j-log4j12:1.7.26',
         "org.codehaus.groovy:groovy-all:2.4.3", // groovy for logback
-        "log4j:apache-log4j-extras:1.1"
-
 ]
 
 dependencies {
-
     compile 'io.reactivex.rxjava2:rxjava:2.0.0'
     compile "org.projectlombok:lombok:${lombokVersion}"
     compile loggers
