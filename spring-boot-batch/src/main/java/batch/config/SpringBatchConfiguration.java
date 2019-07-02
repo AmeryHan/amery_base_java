@@ -20,12 +20,9 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.annotation.Resource;
 
@@ -47,12 +44,6 @@ public class SpringBatchConfiguration {
     private JobListener jobListener;
 
     @Bean
-    @Primary
-    public ResourcelessTransactionManager transactionManager() {
-        return new ResourcelessTransactionManager();
-    }
-
-    @Bean
     public UserMapper userMapper() {
         return new UserMapper();
     }
@@ -65,6 +56,11 @@ public class SpringBatchConfiguration {
     @Bean
     public MessageProcessor messageProcessor() {
         return new MessageProcessor();
+    }
+
+    @Bean
+    public JobListener jobListener() {
+        return new JobListener();
     }
 
     @Bean
@@ -89,7 +85,12 @@ public class SpringBatchConfiguration {
      */
     @Bean
     public Step handleDataStep() {
+        /**
+         * chunk <输入,输出> 。chunk通俗的讲类似于SQL的commit; 这里表示处理(processor)100条后写入(writer)一次。
+         * tasklet
+         */
         return stepBuilderFactory.get("getData")
+                //.tasklet()
                 // <输入,输出> 。chunk通俗的讲类似于SQL的commit; 这里表示处理(processor)100条后写入(writer)一次。
                 .<User, Message>chunk(100).
                 faultTolerant().retryLimit(3).retry(Exception.class).skipLimit(100).skip(Exception.class)
@@ -108,7 +109,7 @@ public class SpringBatchConfiguration {
         lineMapper.setFieldSetMapper(userMapper);
         lineMapper.setLineTokenizer(new DelimitedLineTokenizer());
 
-        ClassPathResource resource = new ClassPathResource("classpath:user.txt");
+        ClassPathResource resource = new ClassPathResource("user.txt");
 
         flatFileItemReader.setLineMapper(lineMapper);
         flatFileItemReader.setResource(resource);

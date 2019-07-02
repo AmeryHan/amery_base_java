@@ -1,3 +1,23 @@
 spring:
   main:
     allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://xxxxx.cn:3306/spring_batch?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: dev
+    password: xxxx
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      maximum-pool-size: 100
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 18800
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
