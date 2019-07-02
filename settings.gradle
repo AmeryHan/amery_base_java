@@ -7,4 +7,5 @@ include 'scala'
 include 'redis'
 include 'redis-mq'
 include 'storm'
+include 'spring-boot-batch'
 
