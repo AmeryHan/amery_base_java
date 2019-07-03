@@ -4,7 +4,7 @@ import org.springframework.batch.item.ItemWriter;
 
 import java.util.List;
 
-public class MessageWriter  implements ItemWriter<Message> {
+public class MessageWriter implements ItemWriter<Message> {
 
     @Override
     public void write(List<? extends Message> items) throws Exception {

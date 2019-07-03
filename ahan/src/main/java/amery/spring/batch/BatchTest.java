@@ -15,12 +15,10 @@ public class BatchTest {
 
     @Autowired
     private JobLauncherTestUtils jobLauncherTestUtils;
-    
+
     @Test
     public void testJob() throws Exception {
-        
         JobExecution jobExecution = jobLauncherTestUtils.launchJob();
-
         Assert.assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode());
     }
 }

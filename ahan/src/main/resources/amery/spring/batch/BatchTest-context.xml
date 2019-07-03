@@ -76,7 +76,7 @@
 		<batch:tasklet ref="partitionerStepTasklet"></batch:tasklet>
 	</batch:step>
 
-	<bean id="partitioner" class="amery.spring.batch.PartitionerTest" scope="step">
+	<bean id="partitioner" class="amery.spring.batch.TestPartitioner" scope="step">
 		<property name="itemCount" value="100"></property>
 	</bean>
 	

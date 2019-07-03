@@ -3,7 +3,6 @@ package amery.spring.batch.chunk;
 import org.springframework.batch.item.ItemProcessor;
 
 
-
 public class MessageProcessor implements ItemProcessor<User, Message> {
     @Override
     public Message process(User item) throws Exception {

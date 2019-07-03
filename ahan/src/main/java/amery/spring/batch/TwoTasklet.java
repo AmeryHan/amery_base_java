@@ -8,14 +8,12 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 
 public class TwoTasklet implements Tasklet {
-
     private static final Logger logger = LoggerFactory.getLogger(TwoTasklet.class);
 
-    public RepeatStatus execute(StepContribution contribution,
-	    ChunkContext chunkContext) throws Exception {
-	
-	logger.info("-----------TwoTasklet");
-	return null;
+    @Override
+    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+        logger.info("-----------TwoTasklet");
+        return null;
     }
 
 }

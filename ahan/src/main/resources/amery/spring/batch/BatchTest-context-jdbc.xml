@@ -70,7 +70,7 @@
 		<batch:tasklet ref="partitionerStepTasklet"></batch:tasklet>
 	</batch:step>
 
-	<bean id="partitioner" class="amery.spring.batch.PartitionerTest" scope="step">
+	<bean id="partitioner" class="amery.spring.batch.TestPartitioner" scope="step">
 	</bean>
 	
 	<bean id="firstTasklet" class="amery.spring.batch.FirstTasklet"></bean>
