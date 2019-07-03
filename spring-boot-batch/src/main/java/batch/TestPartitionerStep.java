@@ -9,9 +9,9 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PartitionerStep implements Tasklet {
+public class TestPartitionerStep implements Tasklet {
 
-    private static final Logger logger = LoggerFactory.getLogger(PartitionerStep.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestPartitionerStep.class);
     private int number;
 
     @Override

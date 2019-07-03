@@ -21,16 +21,15 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.annotation.Resource;
 
-@Configuration
+//@Configuration
 @EnableBatchProcessing
-public class SpringBatchChunkJobConfiguration {
+public class SpringBatchChunkConfig {
 
-    private static final Logger log = LoggerFactory.getLogger(SpringBatchChunkJobConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(SpringBatchChunkConfig.class);
 
     @Resource
     private JobBuilderFactory jobBuilderFactory;
@@ -65,7 +64,7 @@ public class SpringBatchChunkJobConfiguration {
 
     @Bean
     public Job dataHandleJob() {
-        return jobBuilderFactory.get("chunkJob-reader-processor-writee").
+        return jobBuilderFactory.get("chunkJob-reader-processor-writer").
                 incrementer(new RunIdIncrementer()).
                 start(step1()).
                 listener(jobListener).

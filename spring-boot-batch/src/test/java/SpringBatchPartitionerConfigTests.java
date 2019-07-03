@@ -1,5 +1,4 @@
 import batch.config.BatchApplication;
-import batch.config.SampleBatchApplication;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -8,7 +7,7 @@ import org.springframework.boot.test.rule.OutputCapture;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SampleBatchApplicationTests {
+public class SpringBatchPartitionerConfigTests {
 
     @Rule
     public OutputCapture outputCapture = new OutputCapture();
