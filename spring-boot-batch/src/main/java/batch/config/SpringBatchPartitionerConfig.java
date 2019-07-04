@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @EnableBatchProcessing
-@Configuration
+//@Configuration
 public class SpringBatchPartitionerConfig {
     private static final Logger log = LoggerFactory.getLogger(SpringBatchPartitionerConfig.class);
     @Autowired
