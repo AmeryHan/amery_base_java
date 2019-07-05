@@ -1,20 +1,42 @@
-apply plugin: 'maven'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+    }
+}
+
+def nexus_user = "xxxx"
+def nexus_password = "xxxx"
+def snapshot_version = "4.0-SNAPSHOT"
+
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'spring-boot-batch'
+    version =  "$snapshot_version"
+}
 
 group 'ahan.bigdata'
-version '6.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
+version =  "$snapshot_version"
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-batch', version: '2.1.6.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.1.6.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot', version: '2.1.5.RELEASE'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
 
@@ -22,27 +44,38 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
+tasks.whenTaskAdded { task ->
+    if (task.name == 'uploadArchives') {
+        task.dependsOn('bootJar')
+    }
+}
+
 uploadArchives {
+    //tasks.build.execute()
     repositories {
         mavenDeployer {
             //pom.artifactId = 'spring-boot-batch'
-            //pom.version = '1.0-SNAPSHOT'
-            repository(url: 'http://gitlab.xx.cn:8081/repository/maven-snapshots/') {
-                authentication(userName: 'xx', password: 'xx')
-            }
-            snapshotRepository(url: 'http://gitlab.xx.cn:8081/repository/maven-snapshots/') {
-                authentication(userName: 'xx', password: 'xx')
+            //pom.version = '8.0-SNAPSHOT'
+            repository(url: 'http://gitlab.xxxx.cn:8081/repository/maven-snapshots/') {
+                authentication(userName: "$nexus_user", password: "$nexus_password")
             }
         }
     }
 }
 
-jar {
-    manifest {
-        attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'batch.config.BatchApplication'
-        )
-    }
-}
+//jar {
+//    manifest {
+//        attributes(
+//                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+//                'Main-Class': 'batch.config.BatchApplication'
+//        )
+//    }
+//    // You can reference any part of the dependency configurations,
+//    // and you can have as many from statements as you need
+//    from configurations.compile
+//    // I just copied them into the top of the jar, so it looks like the eclipse exported
+//    // runnable jar, but you could designate a lib directory, and reference that in the
+//    // classpath as "lib/$it.name" instead of it.getName()
+//    into ''
+//}
 
