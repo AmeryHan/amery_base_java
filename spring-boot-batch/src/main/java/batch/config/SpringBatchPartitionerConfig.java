@@ -16,12 +16,14 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.task.configuration.EnableTask;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @EnableBatchProcessing
-//@Configuration
+@EnableTask
+@Configuration
 public class SpringBatchPartitionerConfig {
     private static final Logger log = LoggerFactory.getLogger(SpringBatchPartitionerConfig.class);
     @Autowired
@@ -31,7 +33,7 @@ public class SpringBatchPartitionerConfig {
 
     @Bean
     public Job job(ThreadPoolTaskExecutor threadPoolTaskExecutor, TestPartitionerStep testPartitionerStep)  {
-        return this.jobs.get("taskletJob444")
+        return this.jobs.get("taskletJob")
                 .start(step1())
                 .next(step2())
                 .next(step3(threadPoolTaskExecutor, testPartitionerStep))

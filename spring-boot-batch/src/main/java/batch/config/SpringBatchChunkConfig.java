@@ -26,7 +26,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import javax.annotation.Resource;
 
-@Configuration
+//@Configuration
 @EnableBatchProcessing
 public class SpringBatchChunkConfig {
 
