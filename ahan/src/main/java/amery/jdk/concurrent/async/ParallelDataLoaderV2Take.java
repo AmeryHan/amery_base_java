@@ -10,31 +10,14 @@ import java.util.concurrent.*;
  */
 public class ParallelDataLoaderV2Take extends DataLoaderV2 {
 
+    @Override
     protected void doLoad() {  // 并行计算
-
         ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
         CompletionService completionService = new ExecutorCompletionService(executorService);
 
-        completionService.submit(new Callable() {
-            @Override
-            public Object call() throws Exception {
-                return loadConfigurations();
-            }
-        });
-
-        completionService.submit(new Callable() {
-            @Override
-            public Object call() throws Exception {
-                return loadUsers();
-            }
-        });
-
-        completionService.submit(new Callable() {
-            @Override
-            public Object call() throws Exception {
-                return loadOrders();
-            }
-        });
+        completionService.submit(this::loadConfigurations);
+        completionService.submit(() -> loadUsers());
+        completionService.submit(() -> loadOrders());
 
         executorService.shutdown();
 
