@@ -1,4 +1,4 @@
-package amery.jdk.io;
+package amery.jdk.nio;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;

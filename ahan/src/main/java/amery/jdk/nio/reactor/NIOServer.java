@@ -1,14 +1,11 @@
-package amery.jdk.io.reactor;
-
-/**
- * Created by ahan on 11/07/2017.
- */
+package amery.jdk.nio.reactor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -16,7 +13,10 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
-public class MulThreadNIOServer {
+/**
+ * Created by ahan on 11/07/2017.
+ */
+public class NIOServer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NIOServer.class);
 	public static void main(String[] args) throws IOException {
@@ -25,13 +25,10 @@ public class MulThreadNIOServer {
 		serverSocketChannel.configureBlocking(false);
 		serverSocketChannel.bind(new InetSocketAddress(1234));
 		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-		while (true) {
-			if(selector.selectNow() < 0) {
-				continue;
-			}
+		while (selector.select() > 0) {
 			Set<SelectionKey> keys = selector.selectedKeys();
 			Iterator<SelectionKey> iterator = keys.iterator();
-			while(iterator.hasNext()) {
+			while (iterator.hasNext()) {
 				SelectionKey key = iterator.next();
 				iterator.remove();
 				if (key.isAcceptable()) {
@@ -39,12 +36,20 @@ public class MulThreadNIOServer {
 					SocketChannel socketChannel = acceptServerSocketChannel.accept();
 					socketChannel.configureBlocking(false);
 					LOGGER.info("Accept request from {}", socketChannel.getRemoteAddress());
-					SelectionKey readKey = socketChannel.register(selector, SelectionKey.OP_READ);
-					readKey.attach(new Processor());
+					socketChannel.register(selector, SelectionKey.OP_READ);
 				} else if (key.isReadable()) {
-					Processor processor = (Processor) key.attachment();
-					processor.process(key);
+					SocketChannel socketChannel = (SocketChannel) key.channel();
+					ByteBuffer buffer = ByteBuffer.allocate(1024);
+					int count = socketChannel.read(buffer);
+					if (count <= 0) {
+						socketChannel.close();
+						key.cancel();
+						LOGGER.info("Received invalide data, close the connection");
+						continue;
+					}
+					LOGGER.info("Received message {}", new String(buffer.array()));
 				}
+				keys.remove(key);
 			}
 		}
 	}

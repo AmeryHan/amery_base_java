@@ -1,4 +1,4 @@
-package amery.jdk.io;
+package amery.jdk.nio;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
