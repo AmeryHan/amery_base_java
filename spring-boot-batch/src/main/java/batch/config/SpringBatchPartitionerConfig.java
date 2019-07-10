@@ -1,7 +1,7 @@
 package batch.config;
 
-import batch.TestPartitionerStep;
 import batch.TestPartitioner;
+import batch.TestPartitionerStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -10,7 +10,8 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
-import org.springframework.batch.core.partition.support.PartitionStep;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.partition.PartitionHandler;
 import org.springframework.batch.core.partition.support.TaskExecutorPartitionHandler;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -37,7 +38,7 @@ public class SpringBatchPartitionerConfig {
                 .start(step1())
                 .next(step2())
                 .next(step3(threadPoolTaskExecutor, testPartitionerStep))
-                //.incrementer(new BatchIncrementer())
+                .incrementer(new RunIdIncrementer())
                 .build();
     }
 
@@ -57,25 +58,24 @@ public class SpringBatchPartitionerConfig {
 
     @Bean
     protected Step step3(ThreadPoolTaskExecutor threadPoolTaskExecutor, TestPartitionerStep testPartitionerStep)  {
-        Step step3 = this.steps.get("taskletJob-step3")
+        return this.steps.get("taskletJob-step3")
                 .partitioner("taskletJob-step3", testPartitioner())
+                .partitionHandler(partitionHandler(threadPoolTaskExecutor, testPartitionerStep))
+                .build();
+    }
+
+    @Bean
+    protected PartitionHandler partitionHandler(ThreadPoolTaskExecutor threadPoolTaskExecutor, TestPartitionerStep testPartitionerStep) {
+        TaskExecutorPartitionHandler partitionHandler = new TaskExecutorPartitionHandler();
+        partitionHandler.setGridSize(3);
+        partitionHandler.setTaskExecutor(threadPoolTaskExecutor);
+
+        Step partitionerStep = this.steps.get("taskletJob-step3-partitionerStep")
+                .tasklet(testPartitionerStep)
                 .build();
 
-        if (step3 instanceof  PartitionStep) {
-            PartitionStep partitionStep = (PartitionStep)step3;
-
-            TaskExecutorPartitionHandler partitionHandler = new TaskExecutorPartitionHandler();
-            partitionHandler.setGridSize(3);
-            partitionHandler.setTaskExecutor(threadPoolTaskExecutor);
-
-            Step partitionerStep = this.steps.get("taskletJob-step3-partitionerStep")
-                    .tasklet(testPartitionerStep)
-                    .build();
-
-            partitionHandler.setStep(partitionerStep);
-            partitionStep.setPartitionHandler(partitionHandler);
-        }
-        return step3;
+        partitionHandler.setStep(partitionerStep);
+        return partitionHandler;
     }
 
     @Bean
@@ -104,10 +104,10 @@ public class SpringBatchPartitionerConfig {
     @Bean
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-        threadPoolTaskExecutor.setCorePoolSize(50);
+        threadPoolTaskExecutor.setCorePoolSize(20);
         threadPoolTaskExecutor.setMaxPoolSize(200);
         threadPoolTaskExecutor.setQueueCapacity(1000);
-        threadPoolTaskExecutor.setThreadNamePrefix("fkb-spring-batch-thread");
+        threadPoolTaskExecutor.setThreadNamePrefix("fkb-spring-batch-thread-");
         return threadPoolTaskExecutor;
     }
 
