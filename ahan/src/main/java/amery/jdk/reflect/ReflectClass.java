@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 public class ReflectClass {
 
     private final static String TAG = "peter.log.ReflectClass";
-    
+
     // 创建对象
     @Test
     public void reflectNewInstance() {
@@ -27,12 +27,12 @@ public class ReflectClass {
 
     // 反射私有的构造方法
     @Test
-    public  void reflectPrivateConstructor() {
+    public void reflectPrivateConstructor() {
         try {
             Class<?> classBook = Class.forName("amery.jdk.reflect.Book");
-            Constructor<?> declaredConstructorBook = classBook.getDeclaredConstructor(String.class,String.class);
+            Constructor<?> declaredConstructorBook = classBook.getDeclaredConstructor(String.class, String.class);
             declaredConstructorBook.setAccessible(true);
-            Object objectBook = declaredConstructorBook.newInstance("Android开发艺术探索","任玉刚");
+            Object objectBook = declaredConstructorBook.newInstance("Android开发艺术探索", "任玉刚");
             Book book = (Book) objectBook;
             System.out.println("reflectPrivateConstructor book = " + book.toString());
         } catch (Exception ex) {
@@ -60,10 +60,13 @@ public class ReflectClass {
     public void reflectPrivateMethod() {
         try {
             Class<?> classBook = Class.forName("amery.jdk.reflect.Book");
-            Method methodBook = classBook.getDeclaredMethod("declaredMethod",int.class);
+            Method methodBook = classBook.getDeclaredMethod("declaredMethod", int.class);
             methodBook.setAccessible(true);
             Object objectBook = classBook.newInstance();
-            String string = (String) methodBook.invoke(objectBook,0);
+            String string = (String) methodBook.invoke(objectBook, 0);
+
+//            Book book = (Book) (objectBook);
+//            book.declaredMethod(0);
 
             System.out.println("reflectPrivateMethod string = " + string);
         } catch (Exception ex) {
@@ -76,5 +79,5 @@ public class ReflectClass {
         System.out.println(this.getClass().getCanonicalName());
         System.out.println(Book.class.getFields());
     }
-    
+
 }
