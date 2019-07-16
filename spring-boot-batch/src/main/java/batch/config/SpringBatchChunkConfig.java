@@ -26,7 +26,8 @@ import org.springframework.core.io.ClassPathResource;
 
 import javax.annotation.Resource;
 
-//@Configuration
+@Configuration
+@ConditionalOnJobName(jobName = "chunkJob-reader-processor-writer")
 @EnableBatchProcessing
 public class SpringBatchChunkConfig {
 

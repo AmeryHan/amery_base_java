@@ -23,8 +23,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @EnableBatchProcessing
-@EnableTask
+//@EnableTask
 @Configuration
+@ConditionalOnJobName(jobName = "taskletJob")
 public class SpringBatchPartitionerConfig {
     private static final Logger log = LoggerFactory.getLogger(SpringBatchPartitionerConfig.class);
     @Autowired
