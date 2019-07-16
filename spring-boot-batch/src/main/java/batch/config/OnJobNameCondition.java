@@ -14,9 +14,9 @@ public class OnJobNameCondition implements Condition {
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
         Map<String, Object> annotationAttributes = metadata.getAnnotationAttributes(ConditionalOnJobName.class.getName());
-        String jobName = String.valueOf(annotationAttributes.get("jobName"));
-        String javaPropertyValue = System.getProperty("jobName");
-        return jobName.equals(javaPropertyValue);
+        String annotationJobName = String.valueOf(annotationAttributes.get("jobName"));
+        String paramJobName = System.getProperty("jobName");
+        return annotationJobName.equals(paramJobName);
     }
 
 }
