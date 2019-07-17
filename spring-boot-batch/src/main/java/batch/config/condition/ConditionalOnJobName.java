@@ -1,4 +1,4 @@
-package batch.config;
+package batch.config.condition;
 
 import org.springframework.context.annotation.Conditional;
 

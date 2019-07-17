@@ -8,7 +8,7 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.Assert;
 
 /**
- * author
+ * author ameryhan
  */
 public class BatchJobSelector implements ImportSelector {
 

@@ -6,6 +6,7 @@ import batch.MessageProcessor;
 import batch.MessageWriter;
 import batch.User;
 import batch.UserMapper;
+import batch.config.condition.ConditionalOnJobName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
