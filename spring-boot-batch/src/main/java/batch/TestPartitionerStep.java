@@ -8,7 +8,6 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
-@Component
 public class TestPartitionerStep implements Tasklet {
 
     private static final Logger logger = LoggerFactory.getLogger(TestPartitionerStep.class);
