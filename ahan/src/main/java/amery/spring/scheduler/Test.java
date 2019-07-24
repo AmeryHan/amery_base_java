@@ -11,7 +11,7 @@ public class Test {
     public static void main(String[] args) throws InterruptedException {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext(
-		"com/amery/spring/scheduler/scheduler.xml");
+		"amery/spring/scheduler/scheduler.xml");
 	System.out
 		.println("timerFactory: " + context.getBean("springTaskDemo"));
 
