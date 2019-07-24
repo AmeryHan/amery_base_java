@@ -5,18 +5,15 @@
 -->  
 <beans>  
     <bean id="businessReport" class="amery.spring.quartz.BusinessReport" />
-  
-  
-  
-  
+
     <bean name="reportTask"  
-        class="org.springframework.scheduling.quartz.JobDetailBean">  
+        class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="jobClass" value="amery.spring.quartz.BusinessReport" />
     </bean>  
   
     <!-- 触发器 -->  
     <bean id="cronTrigger"  
-        class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
   
         <!-- 指向我们的任务 -->  
         <property name="jobDetail" ref="reportTask" />  
