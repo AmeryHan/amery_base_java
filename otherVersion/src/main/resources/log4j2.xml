@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="debug" name="feikongbao-pc-app" packages="" monitorInterval="1">
+<Configuration status="debug" name="app" packages="" monitorInterval="1">
     <Properties>
         <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSSZ} ${sys:spring.application.name}/${sys:instanceId} ${env:hostName} [%t] %-5level %logger{15} [%M:%L] -- %msg%n</Property>
         <Property name="LOG_ROOT_DIR">/fkb-logs/</Property>

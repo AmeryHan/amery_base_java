@@ -23,7 +23,7 @@ public class LaunchJobResolver {
         JobDataMap jobDataMap = new JobDataMap();
         jobDataMap.put("xxx", "xxx");
 
-        JobDetail jobDetail = JobBuilder.newJob(FkbQuartzJob.class)
+        JobDetail jobDetail = JobBuilder.newJob(QuartzJob.class)
                 .setJobData(jobDataMap)
                 .storeDurably()
                 .build();

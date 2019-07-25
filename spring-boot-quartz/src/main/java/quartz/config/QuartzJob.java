@@ -9,8 +9,8 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
  * @author ameryhan
  * @date 2019/7/24 15:51
  */
-public class FkbQuartzJob extends QuartzJobBean {
-    private static Logger logger = LoggerFactory.getLogger(FkbQuartzJob.class);
+public class QuartzJob extends QuartzJobBean {
+    private static Logger logger = LoggerFactory.getLogger(QuartzJob.class);
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) {
