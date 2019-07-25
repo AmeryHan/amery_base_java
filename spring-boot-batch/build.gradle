@@ -8,8 +8,8 @@ buildscript {
     }
 }
 
-def nexus_user = "rd"
-def nexus_password = "Yodoo1sfaraway"
+def nexus_user = "xx"
+def nexus_password = "xxxx"
 def snapshot_version = "1.0-SNAPSHOT"
 
 apply plugin: 'java'
@@ -57,7 +57,7 @@ tasks.whenTaskAdded { task ->
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: 'http://gitlab.feikongbao.cn:8081/repository/maven-snapshots/') {
+            repository(url: 'http://gitlab.xxxxx.cn:8081/repository/maven-snapshots/') {
                 authentication(userName: "$nexus_user", password: "$nexus_password")
             }
         }
