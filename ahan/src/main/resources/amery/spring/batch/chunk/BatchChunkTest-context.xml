@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:batch="http://www.springframework.org/schema/batch"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:task="http://www.springframework.org/schema/task"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+    http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <batch:job id="messageJob">
+    <batch:step id="messageStep">
+        <batch:tasklet>
+            <batch:chunk reader="messageReader" processor="messageProcessor" writer="messageWriter"
+                         commit-interval="10"
+                         chunk-completion-policy="">
+            </batch:chunk>
+        </batch:tasklet>
+    </batch:step>
+    </batch:job>
+
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    <bean id="messageReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+        <property name="lineMapper" ref="lineMapper"/>
+        <property name="resource" value="classpath:amery/spring/batch/chunk/user.txt"/>
+    </bean>
+
+    <bean id="lineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+        <property name="lineTokenizer" ref="lineTokenizer"/>
+        <property name="fieldSetMapper" ref="fieldSetMapper"/>
+    </bean>
+    <bean id="fieldSetMapper" class="amery.spring.batch.chunk.UserMapper"/>
+    <bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer"/>
+    <bean id="messageProcessor" class="amery.spring.batch.chunk.MessageProcessor"/>
+    <bean id="messageWriter" class="amery.spring.batch.chunk.MessageWriter"/>
+    <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+
+    <bean id="jobLauncherTestUtils" class="org.springframework.batch.test.JobLauncherTestUtils">
+        <property name="jobLauncher" ref="jobLauncher"></property>
+        <property name="jobRepository" ref="jobRepository"></property>
+        <property name="job" ref="messageJob"></property>
+    </bean>
+
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+    </bean>
+
+</beans>

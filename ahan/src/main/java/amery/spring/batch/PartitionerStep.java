@@ -12,11 +12,10 @@ public class PartitionerStep implements Tasklet {
     private static final Logger logger = LoggerFactory.getLogger(PartitionerStep.class);
     private int number;
 
-    public RepeatStatus execute(StepContribution contribution,
-	    ChunkContext chunkContext) throws Exception {
-	
-	logger.info("-----------"+number);
-	return null;
+    @Override
+    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+        logger.info("-----------" + number);
+        return null;
     }
 
     public int getNumber() {

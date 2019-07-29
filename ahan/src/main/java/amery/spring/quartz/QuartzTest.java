@@ -15,7 +15,13 @@ public class QuartzTest {
     
     @Test
     public void testQuartz(){
-	logger.info("testQuartz");
+	    logger.info("testQuartz");
+//        try {
+//            Thread.sleep(890000000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        logger.info("quartz end");
     }
     
 

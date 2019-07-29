@@ -66,6 +66,10 @@ public class RemoveTest {
 				toCollection(() -> set), ArrayList::new)
 		);
 
+		List<User> distinctClass = users.stream().collect(Collectors.collectingAndThen(
+				Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getUsername() + ";" + o.getMoney()))),
+				ArrayList::new));
+
 		return users.stream().collect(
 			collectingAndThen(
 				toCollection(() -> new TreeSet<>(Comparator.comparing(User::getUsername))), ArrayList::new));

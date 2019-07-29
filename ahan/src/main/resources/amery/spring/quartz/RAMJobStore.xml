@@ -18,16 +18,17 @@
         </property>
     </bean>
     
-    <bean name="reportTaskJobDetailBean"  
-        class="org.springframework.scheduling.quartz.JobDetailBean">  
+    <bean name="reportTaskJobDetailBean"
+        class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="jobClass" value="amery.spring.quartz.BusinessReport" />
-    </bean>    
+    </bean>
     <!-- 俩种trigger cron和simple -->
     <!-- 定义触发时间 -->
     <bean id="doTimeCronTrigger"
-        class="org.springframework.scheduling.quartz.CronTriggerBean">
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail">
-            <ref bean="jobtask" />
+<!--            <ref bean="jobtask" />-->
+            <ref bean="reportTaskJobDetailBean"/>
         </property>
         <!-- cron表达式 -->
         <property name="cronExpression">
@@ -36,7 +37,7 @@
     </bean>
 	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		<!-- <property name="jobDetail" ref="jobtask" /> -->
-		<property name="jobDetail" ref="reportTaskJobDetailBean" />
+		<property name="jobDetail" ref="jobtask" />
 		<property name="repeatInterval" value="10" />
 	</bean> 
 	<!-- 俩种trigger cron和simple -->
@@ -45,8 +46,8 @@
         class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <!-- <ref bean="doTimeCronTrigger" /> -->
-                <ref bean="simpleTrigger" />
+                 <ref bean="doTimeCronTrigger" />
+<!--                <ref bean="simpleTrigger" />-->
             </list>
         </property>
     </bean>
