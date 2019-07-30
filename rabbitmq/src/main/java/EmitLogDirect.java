@@ -2,6 +2,8 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
+import java.nio.charset.StandardCharsets;
+
 public class EmitLogDirect {
 
   private static final String EXCHANGE_NAME = "direct_logs";
@@ -18,7 +20,7 @@ public class EmitLogDirect {
     String severity = getSeverity(argv);
     String message = getMessage(argv);
 
-    channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes("UTF-8"));
+    channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes(StandardCharsets.UTF_8));
     System.out.println(" [x] Sent '" + severity + "':'" + message + "'");
 
     channel.close();

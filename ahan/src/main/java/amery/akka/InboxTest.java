@@ -20,8 +20,8 @@ public class InboxTest extends UntypedActor {
 	private final LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 
 	public enum Msg{
-		WORKING, DONE, CLOSE;
-	}
+		WORKING, DONE, CLOSE
+    }
 
 	@Override
 	public void onReceive(Object o){

@@ -43,7 +43,7 @@ public class ExchangerTest {
     	
     	                        // 等待另一个线程到达此交换点（除非当前线程被中断），然后将给定的对象传送给该线程，并接收该线程的对象
     	
-    	                        String data2 = (String) exchanger.exchange(data1);
+    	                        String data2 = exchanger.exchange(data1);
     	
     	                        System.out.println("线程" + Thread.currentThread().getName() + "换回的数据为" + data2);
     	

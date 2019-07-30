@@ -3,6 +3,8 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.QueueingConsumer;
 import com.rabbitmq.client.AMQP.BasicProperties;
+
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public class RPCClient {
@@ -34,12 +36,12 @@ public class RPCClient {
                                 .replyTo(replyQueueName)
                                 .build();
 
-    channel.basicPublish("", requestQueueName, props, message.getBytes("UTF-8"));
+    channel.basicPublish("", requestQueueName, props, message.getBytes(StandardCharsets.UTF_8));
 
     while (true) {
       QueueingConsumer.Delivery delivery = consumer.nextDelivery();
       if (delivery.getProperties().getCorrelationId().equals(corrId)) {
-        response = new String(delivery.getBody(),"UTF-8");
+        response = new String(delivery.getBody(), StandardCharsets.UTF_8);
         break;
       }
     }

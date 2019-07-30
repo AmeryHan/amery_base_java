@@ -55,12 +55,9 @@ public class MutableSafeKeyDemo {
 			if (id != other.id)
 				return false;
 			if (name == null) {
-				if (other.name != null)
-					return false;
-			} else if (!name.equals(other.name))
-				return false;
-			return true;
-		}
+                return other.name == null;
+			} else return name.equals(other.name);
+        }
 
 		// It is specified while object creation.
 	    // Cannot be changed once object is created. No setter for this field.

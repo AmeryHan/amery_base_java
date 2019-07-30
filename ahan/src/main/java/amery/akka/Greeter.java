@@ -7,9 +7,9 @@ import akka.actor.UntypedActor;
  */
 public class Greeter  extends UntypedActor {
 
-	public static enum Msg {
-		GREET, DONE;
-	}
+	public enum Msg {
+		GREET, DONE
+    }
 
 	@Override
 	public void onReceive(Object msg) throws InterruptedException {

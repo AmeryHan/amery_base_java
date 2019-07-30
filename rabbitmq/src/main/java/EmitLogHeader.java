@@ -1,5 +1,6 @@
 import com.rabbitmq.client.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,7 +55,7 @@ public class EmitLogHeader {
     AMQP.BasicProperties theProps = builder.build();
 
     // Now we add the headers.  This example only uses string headers, but they can also be integers
-    channel.basicPublish(EXCHANGE_NAME, routingKey, theProps, message.getBytes("UTF-8"));
+    channel.basicPublish(EXCHANGE_NAME, routingKey, theProps, message.getBytes(StandardCharsets.UTF_8));
     System.out.println(" [x] Sent message: '" + message + "'");
   }
 }

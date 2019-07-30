@@ -6,7 +6,7 @@ package amery.jdk.basic;
 public class TestOOM {
 
 	public static void main(String[] args) {
-		long arr[] = {};
+        long[] arr = {};
 		for (int i=1; i<=10000000; i*=2) {
 			arr = new long[i];
 

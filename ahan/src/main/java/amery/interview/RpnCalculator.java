@@ -12,7 +12,7 @@ public class RpnCalculator {
         Scanner sc = new Scanner(System.in);
         String input;
         do {
-            System.out.println(""); // 让用户换一行输入
+            System.out.println(); // 让用户换一行输入
             input = sc.nextLine();
             if (input.equals("quit")) {
                 System.exit(0);

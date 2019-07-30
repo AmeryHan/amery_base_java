@@ -34,7 +34,7 @@ public class LeakExample {
 	public void noLeak(int size) {
 		HashSet tmpStore = new HashSet();
 		for (int i=0; i<size; ++i) {
-			String leakingUnit = new String("Object: " + i);
+			String leakingUnit = "Object: " + i;
 			tmpStore.add(leakingUnit);
 		}
 		// Though highest memory allocation happens in this

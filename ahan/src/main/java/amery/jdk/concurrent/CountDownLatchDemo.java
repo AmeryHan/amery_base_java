@@ -23,8 +23,8 @@ public class CountDownLatchDemo {
 				}
 				countDown.countDown();
 				System.out.println(String.format("%s\t%s %s", new Date(), threadName, "ended"));
-			}).start();;
-		}
+			}).start();
+        }
 		countDown.await();
 		long stop = System.currentTimeMillis();
 		System.out.println(String.format("Total time : %sms", (stop - start)));

@@ -6,7 +6,7 @@ public interface DefaultFunInterface {
 		return 1;
 	}
 	
-	public static int find(){
+	static int find(){
 		return 1;
 	}
 }

@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class AlgorithmExample {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         LinkedList link = new LinkedList();
         link.add(new Integer(10));
         link.add(new Integer(35));

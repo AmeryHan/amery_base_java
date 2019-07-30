@@ -32,7 +32,7 @@ public class ActionTest {
 
 		Observable.just("Hello, world!")
 			.map(s -> s.hashCode())
-			.subscribe(i -> System.out.println(Integer.toString(i)));
+			.subscribe(i -> System.out.println(i));
 
 	}
 }

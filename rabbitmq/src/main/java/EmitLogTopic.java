@@ -2,6 +2,8 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
+import java.nio.charset.StandardCharsets;
+
 public class EmitLogTopic {
 
   private static final String EXCHANGE_NAME = "topic_logs";
@@ -21,7 +23,7 @@ public class EmitLogTopic {
       String routingKey = getRouting(argv);
       String message = getMessage(argv);
 
-      channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes("UTF-8"));
+      channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes(StandardCharsets.UTF_8));
       System.out.println(" [x] Sent '" + routingKey + "':'" + message + "'");
 
     }

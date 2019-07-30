@@ -15,7 +15,7 @@ public class PriorityBlockingQueueTest {
 
 	static Random random = new Random(47);
 
-	public static void main(String args[]) throws InterruptedException
+	public static void main(String[] args) throws InterruptedException
 
 	{
 

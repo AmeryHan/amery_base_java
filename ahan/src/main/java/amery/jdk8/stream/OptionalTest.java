@@ -36,5 +36,5 @@ public class OptionalTest {
 		return Optional.ofNullable(text).map(String::length).orElse(-1);
 		// Pre-Java 8
 		// return if (text != null) ? text.length() : -1;
-	};
+	}
 }
