@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'ahan.bigdata'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jersey', version: '2.1.6.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

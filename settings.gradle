@@ -11,4 +11,5 @@ include 'spring-boot-batch'
 include 'spring-rpc-http'
 include 'spring-rpc-http-provider'
 include 'spring-boot-quartz'
+include 'spring-boot-jersey'
 
