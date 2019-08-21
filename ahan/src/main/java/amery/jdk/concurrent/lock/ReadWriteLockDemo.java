@@ -1,4 +1,4 @@
-package amery.jdk.concurrent;
+package amery.jdk.concurrent.lock;
 
 import java.util.Date;
 import java.util.concurrent.locks.Lock;

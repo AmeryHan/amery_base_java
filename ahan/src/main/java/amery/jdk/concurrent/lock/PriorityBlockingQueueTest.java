@@ -1,4 +1,4 @@
-package amery.jdk.concurrent;
+package amery.jdk.concurrent.lock;
 
 import lombok.extern.slf4j.Slf4j;
 
