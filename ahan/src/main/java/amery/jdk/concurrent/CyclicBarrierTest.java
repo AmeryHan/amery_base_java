@@ -33,7 +33,7 @@ public class CyclicBarrierTest {
 
         //创建一个新的 CyclicBarrier，它将在给定数量的参与者（线程）处于等待状态时启动
 
-        final CyclicBarrier cb = new CyclicBarrier(3);
+        final CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
 
         for (int i = 0; i < 3; i++) {
 
@@ -45,11 +45,11 @@ public class CyclicBarrierTest {
 
                         Thread.sleep((long) (Math.random() * 10000));
 
-                        System.out.println("线程" + Thread.currentThread().getName() + "即将到达集合地点1，当前已有" + (cb.getNumberWaiting() + 1) + "个已经到达，" + (cb.getNumberWaiting() == 2 ? "都到齐了，继续走啊" : "正在等候"));
+                        System.out.println("线程" + Thread.currentThread().getName() + "即将到达集合地点1，当前已有" + (cyclicBarrier.getNumberWaiting() + 1) + "个已经到达，" + (cyclicBarrier.getNumberWaiting() == 2 ? "都到齐了，继续走啊" : "正在等候"));
 
                         //在所有参与者都已经在此 barrier上调用 await 方法之前，将一直等待
 
-                        cb.await();
+                        cyclicBarrier.await();
 
                     } catch (Exception e) {
 

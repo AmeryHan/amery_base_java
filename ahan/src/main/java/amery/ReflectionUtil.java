@@ -15,7 +15,6 @@ public class ReflectionUtil {
      * @param target    目标对象
      * @param fieldName 字段的名字
      * @return 字段的值
-     * @throws 如果取不到对象指定字段的值则抛出异常
      */
     public static Object getValue(Object target, String fieldName) {
         Class<?> clazz = target.getClass();

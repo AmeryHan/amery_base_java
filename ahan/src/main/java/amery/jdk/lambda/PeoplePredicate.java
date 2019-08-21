@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.function.Predicate;
 
 class PeoplePredicate {
-    private List<Person> persons = new ArrayList<Person>();
+    private List<Person> persons = new ArrayList();
 
     public List<Person> getMaleList(Predicate<Person> predicate) {
-        List<Person> res = new ArrayList<Person>();
+        List<Person> res = new ArrayList();
         persons.forEach(
                 person -> {
                     if (predicate.test(person)) {//调用 Predicate 的抽象方法 test

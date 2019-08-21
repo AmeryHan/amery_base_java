@@ -1,4 +1,4 @@
-package amery.jdk.concurrent;
+package amery.jdk.concurrent.queue;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;

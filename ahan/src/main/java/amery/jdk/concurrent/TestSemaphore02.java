@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 //https://blog.csdn.net/wufaliang003/article/details/87546282
+//10个人有上个茅坑,大家轮流上厕所
 public class TestSemaphore02 {
 
     public static void main(String[] args) {
@@ -26,11 +27,11 @@ public class TestSemaphore02 {
 
         private Semaphore wc;
 
-        public Parent(String name, Semaphore wc) {
+        public Parent(String name, Semaphore semaphore) {
 
             this.name = name;
 
-            this.wc = wc;
+            this.wc = semaphore;
 
         }
 

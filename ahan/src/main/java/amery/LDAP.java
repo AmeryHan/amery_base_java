@@ -24,8 +24,8 @@ public class LDAP {
         ldapTemplate = new LdapTemplate();
 
         LdapContextSource contextSource = new LdapContextSource();
-        contextSource.setUrl("ldap://xxxx.hp.com:xxxx/");
-        contextSource.setBase("ou=People,o=hp.com");
+        contextSource.setUrl("ldap://xxxx.xx.com:xxxx/");
+        contextSource.setBase("ou=People,o=xx.com");
         contextSource.setAnonymousReadOnly(true);
         contextSource.setCacheEnvironmentProperties(false);
 
