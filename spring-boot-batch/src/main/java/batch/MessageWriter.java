@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class MessageWriter  implements ItemWriter<Message> {
+public class MessageWriter implements ItemWriter<Message> {
 
     @Override
     public void write(List<? extends Message> items) throws Exception {

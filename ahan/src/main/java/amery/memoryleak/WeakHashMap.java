@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-public class WeakHashMap<K,V> implements Map<K,V> {
+public class WeakHashMap<K, V> implements Map<K, V> {
 
-	 private void expungeStaleEntries() {
+    private void expungeStaleEntries() {
 			/*Entry<K,V> e;
 		        while ( (e = (Entry<K,V>) queue.poll()) != null) {
 		            int hash = e.hash;
@@ -26,7 +26,7 @@ public class WeakHashMap<K,V> implements Map<K,V> {
 		                cur = next;
 		            }
 		        }*/
-		    }
+    }
 	
 /*    private static class Entry<K,V> extends WeakReference<K> 
       implements Map.Entry<K,V> {
@@ -47,58 +47,58 @@ public class WeakHashMap<K,V> implements Map<K,V> {
         return null;
     }
 
-	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void clear() {
+        // TODO Auto-generated method stub
 
-	public boolean containsKey(Object key) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    }
 
-	public boolean containsValue(Object value) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public boolean containsKey(Object key) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public Set<Entry<K, V>> entrySet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public boolean containsValue(Object value) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public Set<Entry<K, V>> entrySet() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	public Set<K> keySet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public boolean isEmpty() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public V put(K key, V value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Set<K> keySet() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	public void putAll(Map<? extends K, ? extends V> m) {
-		// TODO Auto-generated method stub
-		
-	}
+    public V put(K key, V value) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	public V remove(Object key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void putAll(Map<? extends K, ? extends V> m) {
+        // TODO Auto-generated method stub
 
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    }
 
-	public Collection<V> values() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public V remove(Object key) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public int size() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public Collection<V> values() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

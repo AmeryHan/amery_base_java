@@ -7,5 +7,5 @@ import javax.jws.WebService;
  */
 @WebService
 public interface AccountService {
-     Account getAccount(String name);
+    Account getAccount(String name);
 }

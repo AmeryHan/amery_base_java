@@ -10,46 +10,34 @@ import javax.jms.ObjectMessage;
 
 @Component
 
-public class LogQueueListener implements MessageListener
-
-{
+public class LogQueueListener implements MessageListener {
 
     public static Logger logger = Logger.getLogger(LogQueueListener.class);
 
- 
 
     //@Autowired
     //private ILoggingService loggingService;
 
- 
 
-    public void onMessage( final Message message )
+    public void onMessage(final Message message) {
 
-    {
+        if (message instanceof ObjectMessage) {
 
-        if ( message instanceof ObjectMessage )
+            try {
 
-        {
+                final LoggingEventWrapper loggingEventWrapper = (LoggingEventWrapper) ((ObjectMessage) message).getObject();
 
-            try{
+                // loggingService.saveLog(loggingEventWrapper);
 
-                final LoggingEventWrapper loggingEventWrapper = (LoggingEventWrapper)((ObjectMessage) message).getObject();
-
-               // loggingService.saveLog(loggingEventWrapper);
-
-            }
-
-            catch (final JMSException e)
-
-            {
+            } catch (final JMSException e) {
 
                 logger.error(e.getMessage(), e);
 
             } catch (Exception e) {
 
-            logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
 
-        }
+            }
 
         }
 

@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 
 public class LoggingEventWrapper implements Serializable {
 
-private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
+    private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
 
     private static final long serialVersionUID = 1L;
 
@@ -29,13 +29,11 @@ private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
 
     private String hostName;
 
- 
 
-    public LoggingEventWrapper(LoggingEvent loggingEvent){
+    public LoggingEventWrapper(LoggingEvent loggingEvent) {
 
         this.loggingEvent = loggingEvent;
 
- 
 
         //Format event and set detail field
 
@@ -87,7 +85,6 @@ private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
 
     }
 
- 
 
     public LoggingEvent getLoggingEvent() {
 
@@ -95,7 +92,6 @@ private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
 
     }
 
- 
 
     public String getIpAddress() {
 
@@ -111,7 +107,6 @@ private static final String ENHANCED_PATTERN_LAYOUT = "%throwable";
 
     }
 
- 
 
     public String getHostName() {
 

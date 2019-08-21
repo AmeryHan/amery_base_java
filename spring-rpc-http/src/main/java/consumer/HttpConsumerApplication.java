@@ -9,18 +9,18 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class HttpConsumerApplication {
 
-	@Autowired
-	private AccountService accountService;
+    @Autowired
+    private AccountService accountService;
 
-	@PostConstruct
-	public void callRpcService(){
-		System.out.println("RPC远程访问开始！");
-		System.err.println(accountService.getAccount("kl").getName());
-		System.out.println("RPC远程访问结束！");
-	}
+    @PostConstruct
+    public void callRpcService() {
+        System.out.println("RPC远程访问开始！");
+        System.err.println(accountService.getAccount("kl").getName());
+        System.out.println("RPC远程访问结束！");
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(HttpConsumerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(HttpConsumerApplication.class, args);
+    }
 
 }

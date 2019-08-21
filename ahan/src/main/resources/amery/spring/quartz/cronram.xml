@@ -17,7 +17,7 @@
         <property name="jobDetail" ref="reportTask"/>
         <property name="cronExpression" value="*/5 * * * * ?"/>
         <!--  每天下午16点50分到55分,每分钟运行一次 -->
-<!--        <property name="cronExpression" value="0 50-55 16 * * ?"/>-->
+        <!--        <property name="cronExpression" value="0 50-55 16 * * ?"/>-->
     </bean>
 
     <!-- 调度器  -->

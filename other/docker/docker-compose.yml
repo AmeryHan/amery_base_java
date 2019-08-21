@@ -5,14 +5,14 @@ services:
     image: elkozmon/zoonavigator-web:latest
     container_name: zoonavigator-web
     ports:
-     - "8000:8000"
+      - "8000:8000"
     environment:
       API_HOST: "api"
       API_PORT: 9000
     links:
-     - api
+      - api
     depends_on:
-     - api
+      - api
     restart: always
   api:
     image: elkozmon/zoonavigator-api:latest

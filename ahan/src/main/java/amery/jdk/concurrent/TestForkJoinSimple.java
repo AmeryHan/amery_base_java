@@ -19,7 +19,7 @@ public class TestForkJoinSimple {
     @Before
     public void setUp() {
         for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextLong()%100; //For demo only
+            array[i] = rand.nextLong() % 100; //For demo only
         }
         System.out.println("Initial Array: " + Arrays.toString(array));
     }

@@ -22,10 +22,10 @@ public class BatchJobSelector implements ImportSelector {
             return new String[0];
         }
         if (attributes.getString("jobName").equals("taskletJob")) {
-            return new String[] {SpringBatchPartitionerConfig.class.getName()};
+            return new String[]{SpringBatchPartitionerConfig.class.getName()};
         }
         if (attributes.getString("jobName").equals("chunkJob-reader-processor-writer")) {
-            return new String[] {SpringBatchChunkConfig.class.getName()};
+            return new String[]{SpringBatchChunkConfig.class.getName()};
         }
         return new String[0];
     }

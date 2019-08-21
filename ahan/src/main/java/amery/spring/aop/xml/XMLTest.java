@@ -11,18 +11,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration()
 public class XMLTest {
 
-	@Autowired
-	private Print print;
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+    @Autowired
+    private Print print;
 
-	@Test
-	public void testXMLAOP() {
-		print.print("ding");
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
+    }
+
+    @Test
+    public void testXMLAOP() {
+        print.print("ding");
         System.out.println("-----------------");
         print.sleep("laoding");
-	}
+    }
 
 }

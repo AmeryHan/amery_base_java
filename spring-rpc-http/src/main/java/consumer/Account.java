@@ -6,7 +6,7 @@ public class Account implements Serializable {
 
     private String name;
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 

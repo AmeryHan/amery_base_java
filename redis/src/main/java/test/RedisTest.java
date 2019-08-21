@@ -20,16 +20,16 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class RedisTest {
 
-	@Autowired
-	private StringRedisTemplate redisTemplate;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
-	private static final Logger logger = LoggerFactory.getLogger(RedisTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(RedisTest.class);
 
-	@Test
-	public void testQuartz() {
-		logger.info("start");
-		redisTemplate.opsForValue().set("key", "value", 50, TimeUnit.DAYS);
-		logger.info("end");
-	}
+    @Test
+    public void testQuartz() {
+        logger.info("start");
+        redisTemplate.opsForValue().set("key", "value", 50, TimeUnit.DAYS);
+        logger.info("end");
+    }
 
 }

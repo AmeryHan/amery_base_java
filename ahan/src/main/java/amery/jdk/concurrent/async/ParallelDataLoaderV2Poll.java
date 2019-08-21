@@ -1,6 +1,11 @@
 package amery.jdk.concurrent.async;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * 并行数据加载器
@@ -24,7 +29,7 @@ public class ParallelDataLoaderV2Poll extends DataLoaderV2 {
             Future future = completionService.poll();
             if (future != null) {
                 try {
-                    System.out.println("此次任务执行的结果"+future.get());
+                    System.out.println("此次任务执行的结果" + future.get());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

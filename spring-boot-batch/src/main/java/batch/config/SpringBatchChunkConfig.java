@@ -72,7 +72,7 @@ public class SpringBatchChunkConfig {
                 start(step1()).
                 listener(jobListener).
                 build();
-                //start是JOB执行的第一个step
+        //start是JOB执行的第一个step
 //                next(xxxStep()).
 //                next(xxxStep()).
 //                ...

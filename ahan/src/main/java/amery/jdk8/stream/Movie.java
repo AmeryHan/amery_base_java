@@ -7,28 +7,28 @@ import com.google.common.base.Objects;
  */
 public class Movie {
 
-	private Integer rank;
-	private String description;
+    private Integer rank;
+    private String description;
 
-	public Movie(Integer rank, String description) {
-		super();
-		this.rank = rank;
-		this.description = description;
-	}
+    public Movie(Integer rank, String description) {
+        super();
+        this.rank = rank;
+        this.description = description;
+    }
 
-	public Integer getRank() {
-		return rank;
-	}
+    public Integer getRank() {
+        return rank;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	@Override
-	public String toString() {
-		return Objects.toStringHelper(this)
-			.add("rank", rank)
-			.add("description", description)
-			.toString();
-	}
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("rank", rank)
+                .add("description", description)
+                .toString();
+    }
 }

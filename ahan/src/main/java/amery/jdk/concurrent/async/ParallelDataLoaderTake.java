@@ -25,7 +25,7 @@ public class ParallelDataLoaderTake extends DataLoader {
 
         for (int i = 0; i < 3; i++) {
             try {
-                System.out.println("此次任务的结结:"+completionService.take().get());
+                System.out.println("此次任务的结结:" + completionService.take().get());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

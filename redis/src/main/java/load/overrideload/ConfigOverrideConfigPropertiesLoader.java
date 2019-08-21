@@ -14,29 +14,30 @@ import java.util.Properties;
 @Slf4j
 public class ConfigOverrideConfigPropertiesLoader implements ConfigPropertiesLoader {
 
-	//config call not config part
+    //config call not config part
 
-	public static final String OVERRIDE_PROPERTY_NAME = "config.override";
+    public static final String OVERRIDE_PROPERTY_NAME = "config.override";
 
-	public ConfigOverrideConfigPropertiesLoader(ConfigurableApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
-		String configOverrides = applicationContext.getEnvironment().getProperty(OVERRIDE_PROPERTY_NAME);
-		setPaths(Lists.newArrayList(StringUtils.commaDelimitedListToStringArray(configOverrides)));
-	}
+    public ConfigOverrideConfigPropertiesLoader(ConfigurableApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+        String configOverrides = applicationContext.getEnvironment().getProperty(OVERRIDE_PROPERTY_NAME);
+        setPaths(Lists.newArrayList(StringUtils.commaDelimitedListToStringArray(configOverrides)));
+    }
 
-	private final ConfigurableApplicationContext applicationContext;
+    private final ConfigurableApplicationContext applicationContext;
 
-	private ConfigPropertiesLoaderComposite composite = new ConfigPropertiesLoaderComposite();
+    private ConfigPropertiesLoaderComposite composite = new ConfigPropertiesLoaderComposite();
 
-	@Setter
-	private List<String> paths;
+    @Setter
+    private List<String> paths;
 
-	@Override public Properties loadProperties() {
+    @Override
+    public Properties loadProperties() {
 
-		for (String name : paths) {
-			composite.addConfigPropertiesLoader(new ConfigOverridePropertiesLoader(applicationContext, name));
-		}
-		return composite.loadProperties();
-	}
+        for (String name : paths) {
+            composite.addConfigPropertiesLoader(new ConfigOverridePropertiesLoader(applicationContext, name));
+        }
+        return composite.loadProperties();
+    }
 
 }

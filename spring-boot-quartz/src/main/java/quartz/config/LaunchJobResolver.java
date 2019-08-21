@@ -19,7 +19,7 @@ public class LaunchJobResolver {
     @Autowired
     private Scheduler scheduler;
 
-    public void launchWithCron() throws Exception{
+    public void launchWithCron() throws Exception {
         JobDataMap jobDataMap = new JobDataMap();
         jobDataMap.put("xxx", "xxx");
 

@@ -7,171 +7,165 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class BlockingQueueTest2 {
 
-	/**
+    /**
+     * 定义装苹果的篮子
+     */
 
-	 *
+    public class Basket {
 
-	 * 定义装苹果的篮子
+        // 篮子，能够容纳3个苹果
 
-	 *
+        BlockingQueue<String> basket = new LinkedBlockingQueue<String>(3);
 
-	 */
+        // 生产苹果，放入篮子
 
-	public class Basket {
+        public void produce() throws InterruptedException {
 
-		// 篮子，能够容纳3个苹果
+            // put方法放入一个苹果，若basket满了，等到basket有位置
 
-		BlockingQueue<String> basket = new LinkedBlockingQueue<String>(3);
+            basket.put("An apple");
 
-		// 生产苹果，放入篮子
+        }
 
-		public void produce() throws InterruptedException {
+        // 消费苹果，从篮子中取走
 
-			// put方法放入一个苹果，若basket满了，等到basket有位置
+        public String consume() throws InterruptedException {
 
-			basket.put("An apple");
+            // take方法取出一个苹果，若basket为空，等到basket有苹果为止(获取并移除此队列的头部)
 
-		}
+            return basket.take();
 
-		// 消费苹果，从篮子中取走
+        }
 
-		public String consume() throws InterruptedException {
+    }
 
-			// take方法取出一个苹果，若basket为空，等到basket有苹果为止(获取并移除此队列的头部)
+    // 定义苹果生产者
 
-			return basket.take();
+    class Producer implements Runnable {
 
-		}
+        private String instance;
 
-	}
+        private Basket basket;
 
-	// 定义苹果生产者
+        public Producer(String instance, Basket basket) {
 
-	class Producer implements Runnable {
+            this.instance = instance;
 
-		private String instance;
+            this.basket = basket;
 
-		private Basket basket;
+        }
 
-		public Producer(String instance, Basket basket) {
+        public void run() {
 
-			this.instance = instance;
+            try {
 
-			this.basket = basket;
+                while (true) {
 
-		}
+                    // 生产苹果
 
-		public void run() {
+                    System.out.println("生产者准备生产苹果：" + instance);
 
-			try {
+                    basket.produce();
 
-				while (true) {
+                    System.out.println("!生产者生产苹果完毕：" + instance);
 
-					// 生产苹果
+                    // 休眠300ms
 
-					System.out.println("生产者准备生产苹果：" + instance);
+                    Thread.sleep(300);
 
-					basket.produce();
+                }
 
-					System.out.println("!生产者生产苹果完毕：" + instance);
+            } catch (InterruptedException ex) {
 
-					// 休眠300ms
+                System.out.println("Producer Interrupted");
 
-					Thread.sleep(300);
+            }
 
-				}
+        }
 
-			} catch (InterruptedException ex) {
+    }
 
-				System.out.println("Producer Interrupted");
+    // 定义苹果消费者
 
-			}
+    class Consumer implements Runnable {
 
-		}
+        private String instance;
 
-	}
+        private Basket basket;
 
-	// 定义苹果消费者
+        public Consumer(String instance, Basket basket) {
 
-	class Consumer implements Runnable {
+            this.instance = instance;
 
-		private String instance;
+            this.basket = basket;
 
-		private Basket basket;
+        }
 
-		public Consumer(String instance, Basket basket) {
+        public void run() {
 
-			this.instance = instance;
+            try {
 
-			this.basket = basket;
+                while (true) {
 
-		}
+                    // 消费苹果
 
-		public void run() {
+                    System.out.println("消费者准备消费苹果：" + instance);
 
-			try {
+                    System.out.println(basket.consume());
 
-				while (true) {
+                    System.out.println("!消费者消费苹果完毕：" + instance);
 
-					// 消费苹果
+                    // 休眠1000ms
 
-					System.out.println("消费者准备消费苹果：" + instance);
+                    Thread.sleep(1000);
 
-					System.out.println(basket.consume());
+                }
 
-					System.out.println("!消费者消费苹果完毕：" + instance);
+            } catch (InterruptedException ex) {
 
-					// 休眠1000ms
+                System.out.println("Consumer Interrupted");
 
-					Thread.sleep(1000);
+            }
 
-				}
+        }
 
-			} catch (InterruptedException ex) {
+    }
 
-				System.out.println("Consumer Interrupted");
+    public static void main(String[] args) {
 
-			}
+        BlockingQueueTest2 test = new BlockingQueueTest2();
 
-		}
+        // 建立一个装苹果的篮子
 
-	}
+        Basket basket = test.new Basket();
 
-	public static void main(String[] args) {
+        ExecutorService service = Executors.newCachedThreadPool();
 
-		BlockingQueueTest2 test = new BlockingQueueTest2();
+        Producer producer = test.new Producer("生产者001", basket);
 
-		// 建立一个装苹果的篮子
+        Producer producer2 = test.new Producer("生产者002", basket);
 
-		Basket basket = test.new Basket();
+        Consumer consumer = test.new Consumer("消费者001", basket);
 
-		ExecutorService service = Executors.newCachedThreadPool();
+        service.submit(producer);
 
-		Producer producer = test.new Producer("生产者001", basket);
+        service.submit(producer2);
 
-		Producer producer2 = test.new Producer("生产者002", basket);
+        service.submit(consumer);
 
-		Consumer consumer = test.new Consumer("消费者001", basket);
+        // 程序运行5s后，所有任务停止
 
-		service.submit(producer);
+        // try {
 
-		service.submit(producer2);
+        // Thread.sleep(1000 * 5);
 
-		service.submit(consumer);
+        // } catch (InterruptedException e) {
 
-		// 程序运行5s后，所有任务停止
+        // e.printStackTrace();
 
-		// try {
+        // }
 
-		// Thread.sleep(1000 * 5);
+        // service.shutdownNow();
 
-		// } catch (InterruptedException e) {
-
-		// e.printStackTrace();
-
-		// }
-
-		// service.shutdownNow();
-
-	}
+    }
 }

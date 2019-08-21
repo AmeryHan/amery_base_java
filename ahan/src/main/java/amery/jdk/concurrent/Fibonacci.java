@@ -2,7 +2,11 @@ package amery.jdk.concurrent;
 
 import org.junit.Test;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.Future;
+import java.util.concurrent.RecursiveTask;
 
 class Fibonacci extends RecursiveTask<Integer> {
     final int n;
@@ -12,7 +16,7 @@ class Fibonacci extends RecursiveTask<Integer> {
     }
 
     private int compute(int small) {
-        final int[] results = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 };
+        final int[] results = {1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
         return results[small];
     }
 
@@ -26,7 +30,7 @@ class Fibonacci extends RecursiveTask<Integer> {
         f2.fork();
         return f1.join() + f2.join();
     }
-    
+
     @Test
     public void testFibonacci() throws InterruptedException, ExecutionException {
         ForkJoinTask<Integer> fjt = new Fibonacci(45);

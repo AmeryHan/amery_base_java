@@ -9,18 +9,19 @@ import java.util.Properties;
 
 public class ConfigPropertiesLoaderComposite implements ConfigPropertiesLoader {
 
-	@Getter
-	private List<ConfigPropertiesLoader> loaders = new ArrayList<>();
+    @Getter
+    private List<ConfigPropertiesLoader> loaders = new ArrayList<>();
 
-	@Override public Properties loadProperties() {
-		Properties properties = new Properties();
-		for (ConfigPropertiesLoader each : loaders) {
-			properties.putAll(each.loadProperties());
-		}
-		return properties;
-	}
+    @Override
+    public Properties loadProperties() {
+        Properties properties = new Properties();
+        for (ConfigPropertiesLoader each : loaders) {
+            properties.putAll(each.loadProperties());
+        }
+        return properties;
+    }
 
-	public boolean addConfigPropertiesLoader(ConfigPropertiesLoader configPropertiesLoader) {
-		return loaders.add(configPropertiesLoader);
-	}
+    public boolean addConfigPropertiesLoader(ConfigPropertiesLoader configPropertiesLoader) {
+        return loaders.add(configPropertiesLoader);
+    }
 }

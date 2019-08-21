@@ -33,7 +33,7 @@ public class TestAsync {
             e.printStackTrace();
         }
         int count = 100;
-        for (int i = 0; i <= count; i ++) {
+        for (int i = 0; i <= count; i++) {
             logger.debug("check is order by count {} ", i);
         }
         logger.debug("end");

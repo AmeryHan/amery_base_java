@@ -18,6 +18,7 @@ public class MyResource {
 
     /**
      * http://localhost:8080/resource
+     *
      * @return
      */
     @GET

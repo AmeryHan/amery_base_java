@@ -53,6 +53,7 @@ public class RedisMqConfiguration {
 
     /**
      * start one async thread redisContainer to monitor it
+     *
      * @param redisMessageSubscriber
      * @param channelTopic
      * @param jedisConnectionFactory
@@ -76,7 +77,7 @@ public class RedisMqConfiguration {
                 .expireAfterWrite(Integer.MAX_VALUE, TimeUnit.DAYS)
                 .maximumSize(10000)
                 //build is fallback
-                .build(name -> (CachedObjectType)redisTemplate
+                .build(name -> (CachedObjectType) redisTemplate
                         .opsForHash()
                         .get(redisHashName, name));
         return cache;

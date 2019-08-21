@@ -2,10 +2,10 @@ package amery.sort;
 
 import java.util.Comparator;
 
-public class BubbleSorter  implements Sorter {
+public class BubbleSorter implements Sorter {
 
-	@Override
-	public <T extends Comparable<T>> void sort(T[] list) {
+    @Override
+    public <T extends Comparable<T>> void sort(T[] list) {
         boolean swapped = true;
         for (int i = 1, len = list.length; i < len && swapped; ++i) {
             swapped = false;

@@ -9,30 +9,30 @@ import rx.functions.Action1;
  */
 public class ActionTest {
 
-	@Test
-	public void test() {
+    @Test
+    public void test() {
 
-		//rx 1.0
+        //rx 1.0
 
-		Observable.just("Hello, world!")
-			.subscribe(new Action1<String>() {
-				@Override
-				public void call(String s) {
-					System.out.println(s);
-				}
-			});
+        Observable.just("Hello, world!")
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        System.out.println(s);
+                    }
+                });
 
 
-		Observable.just("Hello, world!11111")
-			.subscribe(s -> System.out.println(s));
+        Observable.just("Hello, world!11111")
+                .subscribe(s -> System.out.println(s));
 
-		Observable.just("Hello, world!")
-			.map(s -> s + " -Dan")
-			.subscribe(s -> System.out.println(s));
+        Observable.just("Hello, world!")
+                .map(s -> s + " -Dan")
+                .subscribe(s -> System.out.println(s));
 
-		Observable.just("Hello, world!")
-			.map(s -> s.hashCode())
-			.subscribe(i -> System.out.println(i));
+        Observable.just("Hello, world!")
+                .map(s -> s.hashCode())
+                .subscribe(i -> System.out.println(i));
 
-	}
+    }
 }

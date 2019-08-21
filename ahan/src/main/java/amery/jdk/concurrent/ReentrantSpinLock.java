@@ -24,7 +24,7 @@ public class ReentrantSpinLock {
         //cas.compareAndSet(current, null);
         if (current == cas.get()) {
             if (count > 0) {
-                count --;
+                count--;
             } else {
                 cas.compareAndSet(current, null);
             }

@@ -6,137 +6,122 @@ import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggingEvent;
 
-import javax.jms.*;
+import javax.jms.DeliveryMode;
+import javax.jms.Destination;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
 
-public abstract class JMSQueueAppender extends AppenderSkeleton implements Appender{
+public abstract class JMSQueueAppender extends AppenderSkeleton implements Appender {
 
-    
 
-private static Logger logger = Logger.getLogger("JMSQueueAppender");
+    private static Logger logger = Logger.getLogger("JMSQueueAppender");
 
- 
 
-private String brokerUri;
+    private String brokerUri;
 
-private String queueName;
+    private String queueName;
 
- 
 
-//@Override
-public void close() {
+    //@Override
+    public void close() {
 
- 
 
-}
+    }
 
- 
 
-//@Override
-public boolean requiresLayout() {
+    //@Override
+    public boolean requiresLayout() {
 
-    return false;
+        return false;
 
-}
+    }
 
- 
 
-//@Override
-protected synchronized void append(LoggingEvent event) {
+    //@Override
+    protected synchronized void append(LoggingEvent event) {
 
- 
 
-   try {
+        try {
 
- 
 
-     ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
 
                     this.brokerUri);
 
- 
 
-     // Create a Connection
+            // Create a Connection
 
-     javax.jms.Connection connection = connectionFactory.createConnection();
+            javax.jms.Connection connection = connectionFactory.createConnection();
 
-     connection.start();//np
+            connection.start();//np
 
- 
 
-     // Create a Session
+            // Create a Session
 
-     Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
- 
 
-     // Create the destination (Topic or Queue)
+            // Create the destination (Topic or Queue)
 
-     Destination destination = session.createQueue(this.queueName);
+            Destination destination = session.createQueue(this.queueName);
 
- 
 
-     // Create a MessageProducer from the Session to the Topic or Queue
+            // Create a MessageProducer from the Session to the Topic or Queue
 
-     MessageProducer producer = session.createProducer(destination);
+            MessageProducer producer = session.createProducer(destination);
 
-     producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
- 
 
-     ObjectMessage message = session.createObjectMessage(new LoggingEventWrapper(event));
+            ObjectMessage message = session.createObjectMessage(new LoggingEventWrapper(event));
 
- 
 
-     // Tell the producer to send the message
+            // Tell the producer to send the message
 
-     producer.send(message);
+            producer.send(message);
 
- 
 
-     // Clean up
+            // Clean up
 
-     session.close();
+            session.close();
 
-     connection.close();
+            connection.close();
 
-  } catch (Exception e) {
+        } catch (Exception e) {
 
-     e.printStackTrace();
+            e.printStackTrace();
 
-  }
+        }
 
-}
+    }
 
- 
 
-public void setBrokerUri(String brokerUri) {
+    public void setBrokerUri(String brokerUri) {
 
-    this.brokerUri = brokerUri;
+        this.brokerUri = brokerUri;
 
-}
+    }
 
- 
 
-public String getBrokerUri() {
+    public String getBrokerUri() {
 
-    return brokerUri;
+        return brokerUri;
 
-}
+    }
 
- 
 
-public void setQueueName(String queueName) {
+    public void setQueueName(String queueName) {
 
-    this.queueName = queueName;
+        this.queueName = queueName;
 
-}
+    }
 
- 
 
-public String getQueueName() {
+    public String getQueueName() {
 
-    return queueName;
+        return queueName;
 
-}
+    }
 
 }

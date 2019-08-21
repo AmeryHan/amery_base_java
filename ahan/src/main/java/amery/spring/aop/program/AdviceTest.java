@@ -10,15 +10,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class AdviceTest {
-	@Autowired
-	private IStudent student;
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+    @Autowired
+    private IStudent student;
 
-	@Test
-	public void testAddStudent() {
-		student.addStudent("dragon");
-	}
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
+    }
+
+    @Test
+    public void testAddStudent() {
+        student.addStudent("dragon");
+    }
 
 }

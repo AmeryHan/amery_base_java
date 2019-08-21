@@ -11,25 +11,25 @@ import java.util.Properties;
 @Slf4j
 public class ConfigurationPropertiesApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-	@Override
-	public void initialize(ConfigurableApplicationContext applicationContext) {
+    @Override
+    public void initialize(ConfigurableApplicationContext applicationContext) {
 
-		System.setProperty("spring.profiles.active", "develop");
-		System.setProperty("config.override", "classpath:project-develop-amery.xml");
+        System.setProperty("spring.profiles.active", "develop");
+        System.setProperty("config.override", "classpath:project-develop-amery.xml");
 
-		Properties properties;
+        Properties properties;
 
-		ConfigLoadExecutor executor = ConfigLoadExecutor.of(applicationContext);
+        ConfigLoadExecutor executor = ConfigLoadExecutor.of(applicationContext);
 
-		try {
-			properties = executor.execute();
-		} catch (Exception e) {
-			throw new IllegalStateException("Fail to initialize configuration properties", e);
-		}
+        try {
+            properties = executor.execute();
+        } catch (Exception e) {
+            throw new IllegalStateException("Fail to initialize configuration properties", e);
+        }
 
-		PropertiesPropertySource propertySource = new PropertiesPropertySource("source name", properties);
-		applicationContext.getEnvironment().getPropertySources().addLast(propertySource);
+        PropertiesPropertySource propertySource = new PropertiesPropertySource("source name", properties);
+        applicationContext.getEnvironment().getPropertySources().addLast(propertySource);
 
-	}
+    }
 
 }

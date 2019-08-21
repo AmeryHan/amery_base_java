@@ -30,7 +30,7 @@ public class RedisMessageSubscriber implements MessageListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Person person = (Person)object;
+        Person person = (Person) object;
         log.debug(person.toString());
 
         caffeineCache.put(person.getName(), person);

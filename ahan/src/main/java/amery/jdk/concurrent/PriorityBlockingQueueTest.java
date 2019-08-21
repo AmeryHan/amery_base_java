@@ -11,165 +11,119 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class PriorityBlockingQueueTest {
 
-	//static Logger logger = LogManager.getLogger(QueueTest.class);
+    //static Logger logger = LogManager.getLogger(QueueTest.class);
 
-	static Random random = new Random(47);
+    static Random random = new Random(47);
 
-	public static void main(String[] args) throws InterruptedException
+    public static void main(String[] args) throws InterruptedException {
 
-	{
+        PriorityBlockingQueue<PriorityEntity> queue = new PriorityBlockingQueue<PriorityEntity>();
 
-		PriorityBlockingQueue<PriorityEntity> queue = new PriorityBlockingQueue<PriorityEntity>();
+        ExecutorService executor = Executors.newCachedThreadPool();
 
-		ExecutorService executor = Executors.newCachedThreadPool();
+        executor.execute(new Runnable() {
 
-		executor.execute(new Runnable()
+            public void run() {
 
-		{
+                int i = 0;
 
-			public void run()
+                while (true) {
 
-			{
+                    queue.put(new PriorityEntity(random.nextInt(10), i++));
 
-				int i = 0;
+                    try {
 
-				while (true)
+                        TimeUnit.MILLISECONDS.sleep(random.nextInt(1000));
 
-				{
+                    } catch (InterruptedException e) {
 
-					queue.put(new PriorityEntity(random.nextInt(10), i++));
+                        log.error("", e);
 
-					try
+                    }
 
-					{
+                }
 
-						TimeUnit.MILLISECONDS.sleep(random.nextInt(1000));
+            }
 
-					}
+        });
 
-					catch (InterruptedException e)
+        executor.execute(new Runnable() {
 
-					{
+            public void run() {
 
-						log.error("", e);
+                while (true) {
 
-					}
+                    try {
 
-				}
+                        System.out.println("take-- " + queue.take() + " left:-- [" + queue.toString() + "]");
 
-			}
+                        try {
 
-		});
+                            TimeUnit.MILLISECONDS.sleep(random.nextInt(3000));
 
-		executor.execute(new Runnable()
+                        } catch (InterruptedException e) {
 
-		{
+                            log.error("", e);
 
-			public void run()
+                        }
 
-			{
+                    } catch (InterruptedException e) {
 
-				while (true)
+                        log.error("", e);
 
-				{
+                    }
 
-					try
+                }
 
-					{
+            }
 
-						System.out.println("take-- " + queue.take() + " left:-- [" + queue.toString() + "]");
+        });
 
-						try
+        try {
 
-						{
+            TimeUnit.SECONDS.sleep(5);
 
-							TimeUnit.MILLISECONDS.sleep(random.nextInt(3000));
+        } catch (InterruptedException e) {
 
-						}
+            log.error("", e);
 
-						catch (InterruptedException e)
+        }
 
-						{
+    }
 
-							log.error("", e);
+    static class PriorityEntity implements Comparable<PriorityEntity> {
 
-						}
+        private static int count = 0;
 
-					}
+        private int id = count++;
 
-					catch (InterruptedException e)
+        private int priority;
 
-					{
+        private int index = 0;
 
-						log.error("", e);
+        public PriorityEntity(int _priority, int _index) {
 
-					}
+            System.out.println("_priority : " + _priority);
 
-				}
+            this.priority = _priority;
 
-			}
+            this.index = _index;
 
-		});
+        }
 
-		try
+        public String toString() {
 
-		{
+            return id + "# [index=" + index + " priority=" + priority + "]";
 
-			TimeUnit.SECONDS.sleep(5);
+        }
 
-		}
+        //数字小,优先级高
 
-		catch (InterruptedException e)
+        public int compareTo(PriorityEntity o) {
 
-		{
+            return this.priority > o.priority ? 1 : this.priority < o.priority ? -1 : 0;
 
-			log.error("", e);
+        }
 
-		}
-
-	}
-
-	static class PriorityEntity implements Comparable<PriorityEntity>
-
-	{
-
-		private static int count = 0;
-
-		private int id = count++;
-
-		private int priority;
-
-		private int index = 0;
-
-		public PriorityEntity(int _priority, int _index)
-
-		{
-
-			System.out.println("_priority : " + _priority);
-
-			this.priority = _priority;
-
-			this.index = _index;
-
-		}
-
-		public String toString()
-
-		{
-
-			return id + "# [index=" + index + " priority=" + priority + "]";
-
-		}
-
-		//数字小,优先级高
-
-		public int compareTo(PriorityEntity o)
-
-		{
-
-			return this.priority > o.priority ? 1 : this.priority < o.priority ? -1 : 0;
-
-		}
-
-	}
+    }
 }

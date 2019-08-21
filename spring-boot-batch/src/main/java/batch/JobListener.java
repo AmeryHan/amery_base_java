@@ -34,6 +34,6 @@ public class JobListener implements JobExecutionListener {
         } else if (jobExecution.getStatus() == BatchStatus.FAILED) {
             log.info("JOB FAILED");
         }
-        log.info("Job Cost Time : {}ms" , (System.currentTimeMillis() - startTime));
+        log.info("Job Cost Time : {}ms", (System.currentTimeMillis() - startTime));
     }
 }

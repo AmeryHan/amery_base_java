@@ -1,7 +1,6 @@
 import batch.config.BatchApplication;
 import org.junit.Rule;
 import org.junit.Test;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.rule.OutputCapture;
 

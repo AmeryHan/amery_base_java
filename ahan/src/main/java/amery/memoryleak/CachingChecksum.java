@@ -3,9 +3,9 @@ package amery.memoryleak;
 import java.lang.ref.SoftReference;
 
 public class CachingChecksum {
-	
+
     private SoftReference<byte[]> bufferRef;
-    
+
     public synchronized int getFileChecksum(String fileName) {
         /*int len = getFileSize(fileName);
         byte[] byteArray = bufferRef.get();
@@ -15,6 +15,7 @@ public class CachingChecksum {
         }
         readFileContents(fileName, byteArray);
         // calculate checksum and return it
-*/    return 0;
-    	}
+*/
+        return 0;
+    }
 }

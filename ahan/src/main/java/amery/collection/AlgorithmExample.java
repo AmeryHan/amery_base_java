@@ -21,7 +21,7 @@ public class AlgorithmExample {
         while (it.hasNext()) {
             System.out.println(it.next());
         }
-        System.out.println("给定列表中的最大值为："+Collections.max(link));
-        System.out.println("给定列表中的最小值为："+Collections.min(link));
+        System.out.println("给定列表中的最大值为：" + Collections.max(link));
+        System.out.println("给定列表中的最小值为：" + Collections.min(link));
     }
 }

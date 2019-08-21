@@ -21,8 +21,8 @@ public class PrimeTest {
             System.out.println(minPrime);
             return minPrime;
         }
-        for (i = input + 1; i < input + 2; i ++) {
-            for (j = minPrime; j <= i; j ++) {
+        for (i = input + 1; i < input + 2; i++) {
+            for (j = minPrime; j <= i; j++) {
                 if (i % j == 0) {
                     break;
                 }

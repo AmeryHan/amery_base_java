@@ -10,10 +10,10 @@ import java.util.concurrent.Executors;
 public class MapLeaker {
     public ExecutorService exec = Executors.newFixedThreadPool(5);
     public Map<Task, TaskStatus> taskStatus
-        = Collections.synchronizedMap(new HashMap<Task, TaskStatus>());
+            = Collections.synchronizedMap(new HashMap<Task, TaskStatus>());
     private Random random = new Random();
 
-    private enum TaskStatus { NOT_STARTED, STARTED, FINISHED }
+    private enum TaskStatus {NOT_STARTED, STARTED, FINISHED}
 
     private class Task implements Runnable {
         private int[] numbers = new int[random.nextInt(200)];

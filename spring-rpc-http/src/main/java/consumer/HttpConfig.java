@@ -13,7 +13,7 @@ import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
 public class HttpConfig {
 
     @Bean("accountService")
-    public HttpInvokerProxyFactoryBean accountService(){
+    public HttpInvokerProxyFactoryBean accountService() {
         HttpInvokerProxyFactoryBean factoryBean = new HttpInvokerProxyFactoryBean();
         factoryBean.setHttpInvokerRequestExecutor(new HttpComponentsHttpInvokerRequestExecutor());
         factoryBean.setServiceUrl("http://127.0.0.1:8081/remoting/AccountService");

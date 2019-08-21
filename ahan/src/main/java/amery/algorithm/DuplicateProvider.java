@@ -45,12 +45,12 @@ public class DuplicateProvider {
     }
 
     public static void main(String[] args) {
-        int[][] matrix = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};
+        int[][] matrix = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
         findFromMatrix(5, matrix);
     }
 
     public static void main1(String[] args) {
-        int[] nums = {2,3,1,0,2,5};
+        int[] nums = {2, 3, 1, 0, 2, 5};
         int[] duplication = {0};
         duplicate(nums, 6, duplication);
         System.out.println(duplication);

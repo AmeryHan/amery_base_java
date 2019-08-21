@@ -1,6 +1,10 @@
 package amery.interview;
 
-import java.util.*;
+import java.util.EmptyStackException;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class RpnCalculator {
 
@@ -29,7 +33,7 @@ public class RpnCalculator {
         String t;
         Double headNumber, nextNumber = 0.0;
         Double result = 0.0;
-        while (!postQueue.isEmpty() && postQueue.size() >= 1 ) {
+        while (!postQueue.isEmpty() && postQueue.size() >= 1) {
             t = postQueue.poll();
             boolean addToStack = true;
             try {

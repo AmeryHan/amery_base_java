@@ -11,6 +11,7 @@ public class FkbSpringBatchApplication {
 
     /**
      * job bean 可以初始化，但是job不能launch
+     *
      * @param args
      */
     public static void main(String[] args) {

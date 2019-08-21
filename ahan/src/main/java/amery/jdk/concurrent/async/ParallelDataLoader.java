@@ -1,6 +1,9 @@
 package amery.jdk.concurrent.async;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * 并行数据加载器

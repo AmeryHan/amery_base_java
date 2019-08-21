@@ -34,7 +34,7 @@ public class SpringBatchPartitionerConfig {
     private StepBuilderFactory steps;
 
     @Bean
-    public Job job(ThreadPoolTaskExecutor threadPoolTaskExecutor, TestPartitionerStep testPartitionerStep)  {
+    public Job job(ThreadPoolTaskExecutor threadPoolTaskExecutor, TestPartitionerStep testPartitionerStep) {
         return this.jobs.get("taskletJob")
                 .start(step1())
                 .next(step2())
@@ -44,21 +44,21 @@ public class SpringBatchPartitionerConfig {
     }
 
     @Bean
-    protected Step step1()  {
+    protected Step step1() {
         return this.steps.get("taskletJob-step1")
                 .tasklet(tasklet())
                 .build();
     }
 
     @Bean
-    protected Step step2()  {
+    protected Step step2() {
         return this.steps.get("taskletJob-step2")
                 .tasklet(tasklet2())
                 .build();
     }
 
     @Bean
-    protected Step step3(ThreadPoolTaskExecutor threadPoolTaskExecutor, TestPartitionerStep testPartitionerStep)  {
+    protected Step step3(ThreadPoolTaskExecutor threadPoolTaskExecutor, TestPartitionerStep testPartitionerStep) {
         return this.steps.get("taskletJob-step3")
                 .partitioner("taskletJob-step3", testPartitioner())
                 .partitionHandler(partitionHandler(threadPoolTaskExecutor, testPartitionerStep))

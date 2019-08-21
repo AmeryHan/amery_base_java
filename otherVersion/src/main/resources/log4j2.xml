@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="debug" name="app" packages="" monitorInterval="1">
     <Properties>
-        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSSZ} ${sys:spring.application.name}/${sys:instanceId} ${env:hostName} [%t] %-5level %logger{15} [%M:%L] -- %msg%n</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSSZ} ${sys:spring.application.name}/${sys:instanceId} ${env:hostName} [%t] %-5level
+            %logger{15} [%M:%L] -- %msg%n
+        </Property>
         <Property name="LOG_ROOT_DIR">/fkb-logs/</Property>
     </Properties>
 
@@ -14,19 +16,21 @@
         <RollingFile name="file"
                      fileName="${LOG_ROOT_DIR}/pc-app.log"
                      filePattern="${LOG_ROOT_DIR}/pc-app-%d{yyyy-MM-dd}-%i.log">
-            <PatternLayout pattern="${LOG_PATTERN}" />
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
-                <SizeBasedTriggeringPolicy size="10MB" />
+                <SizeBasedTriggeringPolicy size="10MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="20" />
+            <DefaultRolloverStrategy max="20"/>
         </RollingFile>
 
     </Appenders>
 
     <Loggers>
         <AsyncRoot level="DEBUG" includeLocation="true">
-            <AppenderRef ref="console" />
-            <AppenderRef ref="file"/>
+                
+            <AppenderRef ref="console"/>
+                
+            <AppenderRef ref="file"/>
         </AsyncRoot>
     </Loggers>
 

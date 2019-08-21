@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @date 2019/7/24 18:26
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { JobSchedulerApplication.class })
+@ContextConfiguration(classes = {JobSchedulerApplication.class})
 public class LaunchJobResolverTest {
     @Autowired
     private LaunchJobResolver launchJobResolver;

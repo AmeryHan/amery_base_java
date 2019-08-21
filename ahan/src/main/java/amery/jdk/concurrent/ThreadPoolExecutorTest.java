@@ -1,72 +1,77 @@
 package amery.jdk.concurrent;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class ThreadPoolExecutorTest {
 
-	//https://www.toutiao.com/i6597175542317842951/
+    //https://www.toutiao.com/i6597175542317842951/
 
 
-	public static ExecutorService newCachedThreadPool() {
+    public static ExecutorService newCachedThreadPool() {
 
-		return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
 
-			60L, TimeUnit.SECONDS,
+                60L, TimeUnit.SECONDS,
 
-			new SynchronousQueue<Runnable>());
+                new SynchronousQueue<Runnable>());
 
-	}
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		//cache();
-		schedule();
-	}
+        //cache();
+        schedule();
+    }
 
-	public static void schedule() {
+    public static void schedule() {
 
-		ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
+        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
 
-		scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
+        scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
 
-			public void run() {
+            public void run() {
 
-				System.out.println("delay 1 seconds, and excute every 3 seconds");
+                System.out.println("delay 1 seconds, and excute every 3 seconds");
 
-			}
+            }
 
-		}, 1, 3, TimeUnit.SECONDS);
+        }, 1, 3, TimeUnit.SECONDS);
 
-	}
+    }
 
-	private static void cache() {
-		ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+    private static void cache() {
+        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
-		for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
 
-			final int index = i;
+            final int index = i;
 
-			try {
+            try {
 
-				Thread.sleep(index * 1000);
+                Thread.sleep(index * 1000);
 
-			} catch (InterruptedException e) {
+            } catch (InterruptedException e) {
 
-				e.printStackTrace();
+                e.printStackTrace();
 
-			}
+            }
 
-			cachedThreadPool.execute(new Runnable() {
+            cachedThreadPool.execute(new Runnable() {
 
-				public void run() {
+                public void run() {
 
-					System.out.println(index);
+                    System.out.println(index);
 
-				}
+                }
 
-			});
+            });
 
-		}
-	}
+        }
+    }
 
 }

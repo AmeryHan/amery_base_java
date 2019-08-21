@@ -7,8 +7,8 @@ import scalaclass.Hello;
  */
 public class HelloWorld {
 
-	public static void main(String[] args){
-		Hello h = new Hello();
-		h.sayHello("scala");
-	}
+    public static void main(String[] args) {
+        Hello h = new Hello();
+        h.sayHello("scala");
+    }
 }
