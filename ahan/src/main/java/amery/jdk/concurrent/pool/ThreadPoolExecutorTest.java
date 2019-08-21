@@ -1,4 +1,4 @@
-package amery.jdk.concurrent;
+package amery.jdk.concurrent.pool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
