@@ -9,6 +9,8 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by ahan on 11/07/2017.
  */
+
+//condition可以细粒度的控制
 public class ConditionTest {
 
     public static void main(String[] args) throws InterruptedException {
