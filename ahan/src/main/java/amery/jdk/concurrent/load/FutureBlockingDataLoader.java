@@ -12,6 +12,7 @@ import java.util.concurrent.Future;
  */
 public class FutureBlockingDataLoader extends DataLoader {
 
+    @Override
     protected void doLoad() {
         ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
         runCompletely(executorService.submit(super::loadConfigurations));

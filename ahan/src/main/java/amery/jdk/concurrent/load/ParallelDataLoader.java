@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
  */
 public class ParallelDataLoader extends DataLoader {
 
+    @Override
     protected void doLoad() {  // 并行计算
         ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
         CompletionService completionService = new ExecutorCompletionService(executorService);
