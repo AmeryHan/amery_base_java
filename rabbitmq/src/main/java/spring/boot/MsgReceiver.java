@@ -23,6 +23,8 @@ public class MsgReceiver implements ChannelAwareMessageListener {
     @RabbitListener(queues = RabbitConfig.QUEUE_A, containerFactory = "rabbitListenerContainerFactory")
     public void onMessage(Message message, Channel channel) throws Exception {
         logger.info("接收处理队列A当中的消息： " + message);
+        //List<String> list = new ArrayList<>();
+        //list.get(3).equals("hanzhan");
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 }
