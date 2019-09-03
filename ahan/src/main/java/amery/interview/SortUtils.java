@@ -288,8 +288,9 @@ public class SortUtils {
                 array[index] = i - bias;
                 bucket[i]--;
                 index++;
-            } else
+            } else {
                 i++;
+            }
         }
         return array;
     }
@@ -302,15 +303,18 @@ public class SortUtils {
      * @return
      */
     public static ArrayList<Integer> BucketSort(ArrayList<Integer> array, int bucketSize) {
-        if (array == null || array.size() < 2)
+        if (array == null || array.size() < 2) {
             return array;
+        }
         int max = array.get(0), min = array.get(0);
         // 找到最大值最小值
         for (int i = 0; i < array.size(); i++) {
-            if (array.get(i) > max)
+            if (array.get(i) > max) {
                 max = array.get(i);
-            if (array.get(i) < min)
+            }
+            if (array.get(i) < min) {
                 min = array.get(i);
+            }
         }
         int bucketCount = (max - min) / bucketSize + 1;
         ArrayList<ArrayList<Integer>> bucketArr = new ArrayList<>(bucketCount);
