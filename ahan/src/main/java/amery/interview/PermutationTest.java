@@ -19,7 +19,9 @@ public class PermutationTest {
             return;
         }
         for (int i = 0; i < in.length(); i++) {
-            if (used[i]) continue;
+            if (used[i]) {
+                continue;
+            }
             out.append(in.charAt(i));
             used[i] = true;
             permutationString();
