@@ -41,13 +41,7 @@ public class RemoveTest {
 
 
     public static List<User> removeDuplicateUser(List<User> users) {
-        Set<User> set = new TreeSet<User>(new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.getUsername().compareTo(o2.getUsername());
-            }
-        });
-
+        Set<User> set = new TreeSet((Comparator<User>) (o1, o2) -> o1.getUsername().compareTo(o2.getUsername()));
         set.addAll(users);
         return new ArrayList<>(set);
     }
