@@ -15,9 +15,6 @@ subprojects {
     apply plugin: 'eclipse'
 
     ext {
-//        junitVersion = "4.11"
-//        springVersion = "4.3.3.RELEASE"
-//        jacksonVersion = "2.4.4"
         compileJava.options.encoding = 'UTF-8'
         compileTestJava.options.encoding = 'UTF-8'
         kafkaVersion = '0.9.0.1'
@@ -51,7 +48,7 @@ subprojects {
 
     //配置依赖
     dependencies {
-        compile group: 'junit', name: 'junit', version: '4.12'
+        testCompile group: 'junit', name: 'junit', version: '4.12'
         compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
         annotationProcessor "org.projectlombok:lombok:1.18.10"
     }
