@@ -2,6 +2,9 @@ group 'ahan.bigdata'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 
@@ -29,7 +32,7 @@ ext {
     handlebarsVersion = '1.3.2'
     jackson2Version = '2.6.7'
     validatorVersion = '4.3.2.Final'
-    lombokVersion = '1.16.6'
+    lombokVersion = '1.18.10'
 }
 
 dependencies {
