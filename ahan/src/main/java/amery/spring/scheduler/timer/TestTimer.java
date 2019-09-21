@@ -7,7 +7,7 @@ public class TestTimer {
 
     public static void main(String[] args) {
         System.out.println("Test start.");
-        ApplicationContext context = new ClassPathXmlApplicationContext("com/amery/spring/scheduler/timer/TestTimer-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("amery/spring/scheduler/timer/TestTimer-context.xml");
         System.out.print("Test end..\n");
     }
 }
