@@ -15,7 +15,7 @@ public class OrikaTest{
 
     public static void main(String[] args) {
         //givenSrcAndDest_whenMaps_thenCorrect();
-        givenSrcAndDest_whenMapsUsingBoundMapper_thenCorrect();
+        //givenSrcAndDest_whenMapsUsingBoundMapper_thenCorrect();
     }
 
     @Test
@@ -31,7 +31,7 @@ public class OrikaTest{
     }
 
     @Test
-    public static void givenSrcAndDest_whenMapsUsingBoundMapper_thenCorrect() {
+    public void givenSrcAndDest_whenMapsUsingBoundMapper_thenCorrect() {
         BoundMapperFacade<Source, Dest> boundMapper = mapperFactory.getMapperFacade(Source.class, Dest.class);
         Source src = new Source("baeldung", 10);
         Dest dest = boundMapper.map(src);

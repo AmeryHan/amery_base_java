@@ -19,6 +19,7 @@ public class LogQueueListener implements MessageListener {
     //private ILoggingService loggingService;
 
 
+    @Override
     public void onMessage(final Message message) {
 
         if (message instanceof ObjectMessage) {
