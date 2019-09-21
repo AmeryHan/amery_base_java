@@ -8,15 +8,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
 public class OrikaTest{
 
     static MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
-
-    public static void main(String[] args) {
-        //givenSrcAndDest_whenMaps_thenCorrect();
-        //givenSrcAndDest_whenMapsUsingBoundMapper_thenCorrect();
-    }
 
     @Test
     public void givenSrcAndDest_whenMaps_thenCorrect() {
