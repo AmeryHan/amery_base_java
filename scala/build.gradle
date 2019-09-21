@@ -2,7 +2,7 @@ group 'ahan.bigdata'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-apply plugin: 'scala'
+//apply plugin: 'scala'
 
 sourceCompatibility = 1.5
 
@@ -12,17 +12,17 @@ repositories {
 
 sourceSets {
     main {
-        scala {
-            srcDirs = ['src/main/scala', 'src/main/java']
-        }
+//        scala {
+//            srcDirs = ['src/main/scala', 'src/main/java']
+//        }
         java {
             srcDirs = []
         }
     }
     test {
-        scala {
-            srcDirs = ['src/test/scala', 'src/test/java']
-        }
+//        scala {
+//            srcDirs = ['src/test/scala', 'src/test/java']
+//        }
         java {
             srcDirs = []
         }

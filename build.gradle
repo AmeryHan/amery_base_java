@@ -1,12 +1,38 @@
+//子模块配置
+
 group 'ahan.bigdata'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
+subprojects {
 
-sourceCompatibility = 1.8
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+
+    ext {
+//        junitVersion = "4.11"
+//        springVersion = "4.3.3.RELEASE"
+//        jacksonVersion = "2.4.4"
+        compileJava.options.encoding = 'UTF-8'
+        compileTestJava.options.encoding = 'UTF-8'
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    //配置依赖
+    dependencies {
+        compile group: 'junit', name: 'junit', version: '4.12'
+        compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+        annotationProcessor "org.projectlombok:lombok:1.18.10"
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -35,6 +61,3 @@ ext {
     lombokVersion = '1.18.10'
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-}
