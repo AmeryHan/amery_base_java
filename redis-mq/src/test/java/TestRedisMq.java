@@ -32,7 +32,7 @@ public class TestRedisMq {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        log.debug("test");
+        //log.debug("test");
     }
 
 }

@@ -20,7 +20,9 @@ List loggers = [
 dependencies {
     compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.10'
     compile group: 'org.reactivestreams', name: 'reactive-streams', version: '1.0.2'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jta-atomikos', version: '2.1.7.RELEASE'
+    compile (group: 'org.springframework.boot', name: 'spring-boot-starter-jta-atomikos', version: '2.1.7.RELEASE') {
+        exclude module: 'spring-boot-starter-logging'
+    }
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
     compile "org.projectlombok:lombok:${lombokVersion}"
 
