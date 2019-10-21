@@ -5,12 +5,15 @@ import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.loading.ClassLoadingStrategy;
 import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.implementation.MethodDelegation;
+import net.bytebuddy.implementation.SuperMethodCall;
 import net.bytebuddy.matcher.ElementMatchers;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
+import static net.bytebuddy.matcher.ElementMatchers.any;
 import static net.bytebuddy.matcher.ElementMatchers.isDeclaredBy;
 import static net.bytebuddy.matcher.ElementMatchers.named;
 import static net.bytebuddy.matcher.ElementMatchers.takesArguments;
@@ -90,10 +93,23 @@ public class ByteBuddyTest {
         String a = "2";
     }
 
-    class DB {
-        public String hello(String name) {
-            System.out.println("DB:" + name);
-            return null;
-        }
+    // 执行完原始构造方法，再开始执行拦截器的代码
+    // 拦截所有构造方法
+    // 拦截的操作：首先调用目标对象的构造方法，根据前面自动匹配，
+    // 这里直接匹配到参数为String.class的构造方法
+    @Test
+    public void test_constructor() throws Exception {
+        Constructor<? extends Db> constructor = new ByteBuddy()
+                .subclass(Db.class)
+                .constructor(any())
+                .intercept(SuperMethodCall.INSTANCE.andThen(
+                        MethodDelegation.withDefaultConfiguration().to(new Interceptor())
+                ))
+                .make()
+                .load(ByteBuddyTest.class.getClassLoader(), ClassLoadingStrategy.Default.INJECTION)
+                .getLoaded()
+                .getConstructor(String.class);
+
+        constructor.newInstance("mysql");
     }
 }

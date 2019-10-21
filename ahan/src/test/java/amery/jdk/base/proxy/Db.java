@@ -7,6 +7,8 @@ package amery.jdk.base.proxy;
  */
 public class Db {
 
+    public Db(String name) { System.out.println("DB:" + name); }
+
     public String hello(String name) {
         System.out.println("DB:" + name);
         return null;
