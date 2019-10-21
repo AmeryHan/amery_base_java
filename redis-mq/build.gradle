@@ -12,7 +12,7 @@ repositories {
 }
 
 ext {
-    springframeworkVersion = '${springframeworkVersion}'
+    springframeworkVersion = '5.1.9.RELEASE'
     springDataRedisVersion = '2.1.6.RELEASE'
 }
 
