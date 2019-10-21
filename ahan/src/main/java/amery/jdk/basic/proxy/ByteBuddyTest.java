@@ -14,8 +14,24 @@ import static net.bytebuddy.matcher.ElementMatchers.named;
  */
 public class ByteBuddyTest {
 
-    // 拦截DB.hello()方法，并委托给Interceptor中的静态方法处理
     public static void main(String[] args) {
+        test();
+    }
+
+    class Foo {
+        public String bar() { return null; }
+        public String foo() { return null; }
+        public String foo(Object o) { return null; }
+    }
+
+    class DB {
+        public String hello(String name) {
+            System.out.println("DB:" + name);
+            return null;
+        }
+    }
+
+    private static void test() {
         try {
             String helloWorld = new ByteBuddy().subclass(DB.class)
                     .method(named("hello"))
@@ -31,19 +47,6 @@ public class ByteBuddyTest {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        }
-    }
-
-    class Foo {
-        public String bar() { return null; }
-        public String foo() { return null; }
-        public String foo(Object o) { return null; }
-    }
-
-    class DB {
-        public String hello(String name) {
-            System.out.println("DB:" + name);
-            return null;
         }
     }
 }
