@@ -111,4 +111,5 @@ dependencies {
     compile group: 'redis.clients', name: 'jedis', version: '3.1.0'
     compile group: 'ma.glasnost.orika', name: 'orika-core', version: '1.5.4'
     compile group: 'cglib', name: 'cglib', version: '3.3.0'
+    compile group: 'net.bytebuddy', name: 'byte-buddy-dep', version: '1.10.2'
 }
