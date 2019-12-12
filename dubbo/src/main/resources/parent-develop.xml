@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <entry key="redis.poolName">amery-redis</entry>
+    <entry key="redis.password"></entry>
+    <entry key="redis.maxTotal">4</entry>
+    <entry key="redis.maxIdle">4</entry>
+    <entry key="redis.minIdle">0</entry>
+    <entry key="redis.timeout">2000</entry>
+    <entry key="redis.global.maxWaitMillis">3000</entry>
+
+</properties>
