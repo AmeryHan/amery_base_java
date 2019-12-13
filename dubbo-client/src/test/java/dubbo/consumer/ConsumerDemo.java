@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConsumerDemo {
 
-    @Reference
+    @Reference(version = "1.0.0", timeout = 20000, validation = "false")
     private UserService userService;
 
     public void print() {

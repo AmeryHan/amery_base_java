@@ -13,4 +13,5 @@ include 'spring-rpc-http-provider'
 include 'spring-boot-quartz'
 include 'spring-boot-jersey'
 include 'dubbo'
+include 'dubbo-client'
 
