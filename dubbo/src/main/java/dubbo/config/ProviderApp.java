@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ProviderApp {
 
     public static void main(String[] args) throws IOException {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext("dubbo");
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext("dubbo.config");
         ctx.start();
         System.out.println("Provider start...");
 

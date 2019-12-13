@@ -1,4 +1,4 @@
-package dubbo.config;
+package dubbo.consumer;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  * 4
  */
 @Configuration
-@ComponentScan({"dubbo"})
+@ComponentScan({"dubbo.consumer"})
 public class TestConfiguration {
 }

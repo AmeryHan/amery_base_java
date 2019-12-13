@@ -1,5 +1,6 @@
-package dubbo.config;
+package dubbo.consumer;
 
+import dubbo.config.UserService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 

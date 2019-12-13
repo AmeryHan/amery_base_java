@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@DubboComponentScan(basePackages = {"dubbo"})
+@DubboComponentScan(basePackages = {"dubbo.config"})
 public class DubboConfig {
 
     @Bean
