@@ -1,4 +1,4 @@
-package other;
+package dubbo.config;
 
 import org.apache.dubbo.config.annotation.Service;
 

@@ -1,4 +1,4 @@
-package other;
+package dubbo.config;
 
 /**
  * 2 * @Author: han,zhansheng

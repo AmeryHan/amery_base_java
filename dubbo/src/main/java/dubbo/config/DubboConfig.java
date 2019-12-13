@@ -1,4 +1,4 @@
-package config;
+package dubbo.config;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.RegistryConfig;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@DubboComponentScan(basePackages = {"other"})
+@DubboComponentScan(basePackages = {"dubbo"})
 public class DubboConfig {
 
     @Bean

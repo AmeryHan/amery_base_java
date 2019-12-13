@@ -1,6 +1,5 @@
-package other;
+package dubbo.config;
 
-import config.DubboConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.io.IOException;
 public class ProviderApp {
 
     public static void main(String[] args) throws IOException {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DubboConfig.class);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext("dubbo");
         ctx.start();
         System.out.println("Provider start...");
 
