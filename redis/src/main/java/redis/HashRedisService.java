@@ -63,7 +63,7 @@ public class HashRedisService<K, HK, HV> {
      * @param value
      */
     public void hSetIfAbsent(K key, HK hashKey, HV value) {
-        redisTemplate.opsForHash().putIfAbsent(key, hashKey, value);
+        redisTemplate.keys("");
     }
 
     /**
