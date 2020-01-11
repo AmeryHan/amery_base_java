@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'ahan.bigdata'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'com.alibaba.boot', name: 'nacos-discovery-spring-boot-starter', version: '0.2.4'
+    compile group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.4'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: '2.2.2.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.2.RELEASE'
+}
