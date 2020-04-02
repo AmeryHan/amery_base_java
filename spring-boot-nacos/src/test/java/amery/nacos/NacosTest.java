@@ -1,7 +1,7 @@
 package amery.nacos;
 
 import com.alibaba.nacos.api.annotation.NacosInjected;
-import com.alibaba.nacos.api.exception.NacosException;
+import com.alibaba.nacos.api.naming.NamingFactory;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,18 @@ public class NacosTest {
             int getValue = useLocalCache;
             List<Instance> list = namingService.getAllInstances("front-api");
             Assert.assertNotNull(1 == 1);
-        } catch (NacosException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void get_instance() {
+        try {
+            NamingService naming = NamingFactory.createNamingService("10.42.1.96:8846");
+            List<Instance> list = naming.getAllInstances("hufront-api");
+            Assert.assertNotNull(1 == 1);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
