@@ -85,7 +85,7 @@ dependencies {
     //compile lombok
 
     compile group: 'redis.clients', name: 'jedis', version: '2.10.2'
-    compile group: 'com.ctrip.framework.apollo', name: 'apollo-client', version: '1.4.0'
+    compile group: 'com.ctrip.framework.apollo', name: 'apollo-client', version: '1.8.0'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.9'
     compile group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '2.7.0'
